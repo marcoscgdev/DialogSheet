@@ -4,4 +4,4 @@ An Android library to create fully material designed bottom dialogs similar to t
 ---
 
 ## Screenshots
-![alt-text-1](https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/1.png "Screenshot 1") ![alt-text-2](https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/1.png2 "Screenshot 2")
+<img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/1.png" width="350"><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/2.png" width="350">

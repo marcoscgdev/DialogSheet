@@ -32,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Positive button clicked!", Toast.LENGTH_SHORT).show();
                             }
                         })
-                        .setNegativeButton(android.R.string.cancel, new DialogSheet.OnNegativeClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        })
                         .setNegativeButton(android.R.string.cancel, null);
 
                 if(((AppCompatCheckBox)findViewById(R.id.iconCheckBox)).isChecked())

@@ -49,11 +49,16 @@ new DialogSheet(this)
     .setMessage(R.string.lorem)
     .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
         @Override
-        public void onClick(View view) {
+        public void onClick(View v) {
             // Your action
         }
     })
-    .setNegativeButton(android.R.string.cancel, null)
+    .setNegativeButton(android.R.string.cancel, new DialogSheet.OnNegativeClickListener() {
+        @Override
+        public void onClick(View v) {
+            // Your action
+        }
+    })
     .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
     .show();
 ```

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DialogSheet Sample</string>
+    <string name="view_on_github">View on GitHub</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eleifend velit eget lorem gravida, sit amet consequat massa efficitur. Vivamus commodo congue nulla, in suscipit mi tempor eget.</string>
+</resources>

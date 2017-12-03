@@ -1,13 +1,17 @@
 package com.marcoscg.dialogsheet;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.widget.Button;
 
@@ -53,16 +57,25 @@ public class Utils {
     public static void setButton(Context context, @ColorInt int color, Button button, boolean colored) {
         if (!colored)
             color = Color.parseColor("#ffffff");
-        Drawable icon = ContextCompat.getDrawable(context, R.drawable.bottomdialog_button_bg).mutate();
-        Drawable icon2 = ContextCompat.getDrawable(context, R.drawable.bottomdialog_button_bg).mutate();
-        Drawable icon3 = ContextCompat.getDrawable(context, R.drawable.bottomdialog_button_bg).mutate();
-        icon.setColorFilter(Utils.darkenColor(color), PorterDuff.Mode.SRC_ATOP);
-        icon2.setColorFilter(Utils.darkenColor(color), PorterDuff.Mode.SRC_ATOP);
-        icon3.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+
+        GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                new int[]{Utils.darkenColor(color), Utils.darkenColor(color)});
+        GradientDrawable drawable2 = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
+                new int[]{color, color});
+
+        drawable.setCornerRadius(dpToPx(2));
+        drawable2.setCornerRadius(dpToPx(2));
+
         StateListDrawable button1bg = new StateListDrawable();
-        button1bg.addState(new int[] {android.R.attr.state_pressed}, icon);
-        button1bg.addState(new int[] {android.R.attr.state_focused}, icon2);
-        button1bg.addState(new int[] { }, icon3);
+        button1bg.addState(new int[] {android.R.attr.state_pressed}, drawable);
+        button1bg.addState(new int[] {}, drawable2);
+        button1bg.setExitFadeDuration(250);
+
         button.setBackgroundDrawable(button1bg);
+    }
+
+    public static int dpToPx(int dp)
+    {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }

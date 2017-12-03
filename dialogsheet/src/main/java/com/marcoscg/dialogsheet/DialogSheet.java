@@ -135,6 +135,11 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setCancelable(boolean cancelable) {
+        dialog.setCancelable(cancelable);
+        return this;
+    }
+
     public void show() {
         if (!showButtons)
             textContainer.setPadding(0,0,0,0);

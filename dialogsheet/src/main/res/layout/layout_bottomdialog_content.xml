@@ -78,10 +78,10 @@
             android:textAllCaps="true"
             style="?borderlessButtonStyle"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:background="@null"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:visibility="gone"
-            android:background="@drawable/bottomdialog_button_bg"/>
+            android:visibility="gone"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/buttonPositive"
@@ -95,10 +95,10 @@
             android:textAllCaps="true"
             style="?borderlessButtonStyle"
             android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:background="@null"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:visibility="gone"
-            android:background="@drawable/bottomdialog_button_bg"
             android:elevation="2dp"/>
 
     </RelativeLayout>

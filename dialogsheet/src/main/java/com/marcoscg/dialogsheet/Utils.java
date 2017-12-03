@@ -22,27 +22,27 @@ import android.widget.Button;
 public class Utils {
 
     @ColorInt
-    public static int darkenColor(@ColorInt int color) {
+    static int darkenColor(@ColorInt int color) {
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
         hsv[2] *= 0.85f;
         return Color.HSVToColor(hsv);
     }
 
-    public static boolean isColorLight(@ColorInt int color) {
+    static boolean isColorLight(@ColorInt int color) {
         if (color == Color.BLACK) return false;
         else if (color == Color.WHITE || color == Color.TRANSPARENT) return true;
         final double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
         return darkness < 0.4;
     }
 
-    public static int buttonTextColor(@ColorInt int color) {
+    static int buttonTextColor(@ColorInt int color) {
         if (isColorLight(color))
             return Color.BLACK;
         else return Color.WHITE;
     }
 
-    public static int getThemeAccentColor(Context context) {
+    static int getThemeAccentColor(Context context) {
         int colorAttr;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             colorAttr = android.R.attr.colorAccent;
@@ -54,7 +54,7 @@ public class Utils {
         return outValue.data;
     }
 
-    public static void setButton(Context context, @ColorInt int color, Button button, boolean colored) {
+    static void setButton(Context context, @ColorInt int color, Button button, boolean colored) {
         if (!colored)
             color = Color.parseColor("#ffffff");
 
@@ -74,8 +74,7 @@ public class Utils {
         button.setBackgroundDrawable(button1bg);
     }
 
-    public static int dpToPx(int dp)
-    {
+    private static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 }

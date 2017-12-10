@@ -13,13 +13,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
- * Created by marco on 01/12/2017.
+ * Created by @MarcosCGdev on 01/12/2017.
  */
 
 public class DialogSheet {
@@ -174,6 +175,12 @@ public class DialogSheet {
         positiveButton = (Button) dialog.findViewById(R.id.buttonPositive);
         negativeButton = (Button) dialog.findViewById(R.id.buttonNegative);
         textContainer = (RelativeLayout) dialog.findViewById(R.id.textContainer);
+        int bgcolor = Utils.getThemeBgColor(context);
+        if (bgcolor!=-1) {
+            dialog.findViewById(R.id.mainDialogContainer).setBackgroundColor(bgcolor);
+            titleTextView.setTextColor(Utils.getTextColor(bgcolor));
+            messageTextView.setTextColor(Utils.getTextColorSec(bgcolor));
+        }
     }
 
     private void showIcon() {

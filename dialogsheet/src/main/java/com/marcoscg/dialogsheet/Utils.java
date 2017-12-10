@@ -3,20 +3,16 @@ package com.marcoscg.dialogsheet;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.graphics.ColorUtils;
 import android.util.TypedValue;
 import android.widget.Button;
 
 /**
- * Created by marco on 01/12/2017.
+ * Created by @MarcosCGdev on 01/12/2017.
  */
 
 public class Utils {
@@ -26,6 +22,14 @@ public class Utils {
         float[] hsv = new float[3];
         Color.colorToHSV(color, hsv);
         hsv[2] *= 0.85f;
+        return Color.HSVToColor(hsv);
+    }
+
+    @ColorInt
+    static int lightenColor(@ColorInt int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] *= 1.60f;
         return Color.HSVToColor(hsv);
     }
 
@@ -55,11 +59,21 @@ public class Utils {
     }
 
     static void setButton(Context context, @ColorInt int color, Button button, boolean colored) {
-        if (!colored)
-            color = Color.parseColor("#ffffff");
+        if (!colored) {
+            if (getThemeBgColor(context)!=-1)
+                color = getThemeBgColor(context);
+            else
+                color = Color.parseColor("#ffffff");
+        }
+
+        int selDark = ColorUtils.blendARGB(color, Color.parseColor("#1A000000"), 0.15f);
+        int selLight = ColorUtils.blendARGB(color, Color.parseColor("#1AFFFFFF"), 0.15f);
+        int selectedColor = isColorLight(color) ? selDark : selLight;
+        //int selectedColor = isColorLight(color) ? Color.parseColor("#1A000000") : Color.parseColor("#1AFFFFFF");
+        //int selectedColor = isColorLight(color) ? darkenColor(color) : lightenColor(color);
 
         GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
-                new int[]{Utils.darkenColor(color), Utils.darkenColor(color)});
+                new int[]{selectedColor, selectedColor});
         GradientDrawable drawable2 = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
                 new int[]{color, color});
 
@@ -72,6 +86,22 @@ public class Utils {
         button1bg.setExitFadeDuration(250);
 
         button.setBackgroundDrawable(button1bg);
+    }
+
+    static int getTextColor(int color) {
+        return isColorLight(color) ? Color.parseColor("#DE000000") : Color.parseColor("#FFFFFFFF");
+    }
+
+    static int getTextColorSec(int color) {
+        return isColorLight(color) ? Color.parseColor("#8A000000") : Color.parseColor("#B3FFFFFF");
+    }
+
+    static int getThemeBgColor(Context context) {
+        TypedValue typedValue = new TypedValue();
+        if (context.getTheme().resolveAttribute(android.R.attr.windowBackground, typedValue, true)) {
+            return typedValue.data;
+        }
+        return -1;
     }
 
     private static int dpToPx(int dp) {

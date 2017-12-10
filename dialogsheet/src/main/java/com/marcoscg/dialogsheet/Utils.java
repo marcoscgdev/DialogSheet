@@ -66,8 +66,8 @@ public class Utils {
                 color = Color.parseColor("#ffffff");
         }
 
-        int selDark = ColorUtils.blendARGB(color, Color.parseColor("#1A000000"), 0.15f);
-        int selLight = ColorUtils.blendARGB(color, Color.parseColor("#1AFFFFFF"), 0.15f);
+        int selDark = ColorUtils.blendARGB(color, Color.parseColor("#000000"), 0.15f);
+        int selLight = ColorUtils.blendARGB(color, Color.parseColor("#FFFFFF"), 0.20f);
         int selectedColor = isColorLight(color) ? selDark : selLight;
         //int selectedColor = isColorLight(color) ? Color.parseColor("#1A000000") : Color.parseColor("#1AFFFFFF");
         //int selectedColor = isColorLight(color) ? darkenColor(color) : lightenColor(color);

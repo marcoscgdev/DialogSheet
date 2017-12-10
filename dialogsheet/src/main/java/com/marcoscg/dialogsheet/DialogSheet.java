@@ -26,7 +26,7 @@ public class DialogSheet {
 
     private Context context;
     private Dialog dialog;
-    int buttonColor = -1;
+    private int buttonColor = -1;
     private boolean showButtons = false;
 
     private TextView titleTextView, messageTextView;

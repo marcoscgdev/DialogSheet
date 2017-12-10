@@ -17,23 +17,7 @@ import android.widget.Button;
 
 public class Utils {
 
-    @ColorInt
-    static int darkenColor(@ColorInt int color) {
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[2] *= 0.85f;
-        return Color.HSVToColor(hsv);
-    }
-
-    @ColorInt
-    static int lightenColor(@ColorInt int color) {
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[2] *= 1.60f;
-        return Color.HSVToColor(hsv);
-    }
-
-    static boolean isColorLight(@ColorInt int color) {
+    private static boolean isColorLight(@ColorInt int color) {
         if (color == Color.BLACK) return false;
         else if (color == Color.WHITE || color == Color.TRANSPARENT) return true;
         final double darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255;
@@ -66,11 +50,9 @@ public class Utils {
                 color = Color.parseColor("#ffffff");
         }
 
-        int selDark = ColorUtils.blendARGB(color, Color.parseColor("#000000"), 0.15f);
-        int selLight = ColorUtils.blendARGB(color, Color.parseColor("#FFFFFF"), 0.20f);
-        int selectedColor = isColorLight(color) ? selDark : selLight;
-        //int selectedColor = isColorLight(color) ? Color.parseColor("#1A000000") : Color.parseColor("#1AFFFFFF");
-        //int selectedColor = isColorLight(color) ? darkenColor(color) : lightenColor(color);
+        int selectedColor = isColorLight(color) ?
+                ColorUtils.blendARGB(color, Color.parseColor("#000000"), 0.15f) :
+                ColorUtils.blendARGB(color, Color.parseColor("#FFFFFF"), 0.20f);
 
         GradientDrawable drawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,
                 new int[]{selectedColor, selectedColor});

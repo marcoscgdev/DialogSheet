@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 1.0.3-fix.
+#### Current release: 1.0.4.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
@@ -38,7 +38,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-compile 'com.github.marcoscgdev:DialogSheet:1.0.3-fix'
+compile 'com.github.marcoscgdev:DialogSheet:1.0.4'
 ```
 
 ### Creating the dialog
@@ -65,7 +65,7 @@ new DialogSheet(this)
     .show();
 ```
 
-Add a custom view:
+#### Add a custom view:
  
   - Via inflated view:
   

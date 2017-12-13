@@ -65,7 +65,7 @@ new DialogSheet(this)
     .show();
 ```
 
-#### Add a custom view:
+#### Adding a custom view:
  
   - Via inflated view:
   

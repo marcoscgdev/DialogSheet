@@ -65,6 +65,26 @@ new DialogSheet(this)
     .show();
 ```
 
+Add a custom view:
+ 
+  - Via inflated view:
+  
+  ```java
+  View view = View.inflate(context, R.layout.custom_dialog_view, null);
+  dialogSheet.setView(view);
+  ```
+  
+  - Via resource:
+ 
+ ```java
+ dialogSheet.setView(R.layout.custom_dialog_view);
+ 
+ // Access dialog custom inflated view
+View inflatedView = dialogSheet.getInflatedView();
+Button button = (Button) inflatedView.findViewById(R.id.customButton);
+...
+ ```
+
 ---
 >See the *sample project* to clarify any queries you may have.
 

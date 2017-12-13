@@ -49,6 +49,7 @@ Here is a complete snippet of it usage:
 new DialogSheet(this)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
+    .setCancelable(false)
     .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
         @Override
         public void onClick(View v) {
@@ -65,7 +66,7 @@ new DialogSheet(this)
     .show();
 ```
 
-#### Adding a custom view:
+#### (TIP) Adding a custom view:
  
   - Via inflated view:
   

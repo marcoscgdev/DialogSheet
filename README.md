@@ -75,7 +75,7 @@ new DialogSheet(this)
   dialogSheet.setView(view);
   ```
   
-  - Via resource:
+  - Via layout resource:
  
  ```java
  dialogSheet.setView(R.layout.custom_dialog_view);

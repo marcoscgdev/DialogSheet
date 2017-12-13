@@ -8,6 +8,7 @@ import android.support.v7.widget.AppCompatCheckBox;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.marcoscg.dialogsheet.DialogSheet;
@@ -18,29 +19,53 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                DialogSheet dialogSheet = new DialogSheet(MainActivity.this)
-                        .setTitle(R.string.app_name)
-                        .setMessage(R.string.lorem)
-                        .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(MainActivity.this, "Positive button clicked!", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton(android.R.string.cancel, null);
-
-                if(((AppCompatCheckBox)findViewById(R.id.iconCheckBox)).isChecked())
-                    dialogSheet.setIcon(R.mipmap.ic_launcher);
-
-                dialogSheet.show();
+                createAndShowDialog();
 
             }
         });
+
+    }
+
+    private void createAndShowDialog() {
+
+        DialogSheet dialogSheet = new DialogSheet(MainActivity.this)
+                .setTitle(R.string.app_name)
+                .setMessage(R.string.lorem)
+                .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "Positive button clicked!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, null);
+
+
+        if (((AppCompatCheckBox)findViewById(R.id.customViewCheckBox)).isChecked()) {
+
+            dialogSheet.setView(R.layout.custom_dialog_view);
+
+            // Access dialog custom inflated view
+            View inflatedView = dialogSheet.getInflatedView();
+            Button button = (Button) inflatedView.findViewById(R.id.customButton);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(MainActivity.this, "I'm a custom button", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
+        if(((AppCompatCheckBox)findViewById(R.id.iconCheckBox)).isChecked())
+            dialogSheet.setIcon(R.mipmap.ic_launcher);
+
+        dialogSheet.show();
+
     }
 
     @Override

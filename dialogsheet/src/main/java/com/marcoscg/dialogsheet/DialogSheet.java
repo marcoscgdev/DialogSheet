@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
@@ -33,6 +34,9 @@ public class DialogSheet {
     private ImageView iconImageView;
     private Button positiveButton, negativeButton;
     private RelativeLayout textContainer;
+    private LinearLayout messageContainer;
+
+    private View inflatedView;
 
     public interface OnPositiveClickListener {
         public void onClick(View v);
@@ -48,6 +52,7 @@ public class DialogSheet {
     }
 
     public DialogSheet setTitle(CharSequence title) {
+        titleTextView.setVisibility(View.VISIBLE);
         titleTextView.setText(title);
         return this;
     }
@@ -58,6 +63,7 @@ public class DialogSheet {
     }
 
     public DialogSheet setMessage(CharSequence message) {
+        messageTextView.setVisibility(View.VISIBLE);
         messageTextView.setText(message);
         return this;
     }
@@ -140,6 +146,23 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setView(View view) {
+        messageContainer.addView(view);
+        if (inflatedView==null)
+            inflatedView = view;
+        return this;
+    }
+
+    public DialogSheet setView(@LayoutRes int layoutRes) {
+        inflatedView = View.inflate(context, layoutRes, null);
+        setView(inflatedView);
+        return this;
+    }
+
+    public View getInflatedView() {
+        return inflatedView;
+    }
+
     public void show() {
         if (!showButtons)
             textContainer.setPadding(0,0,0,0);
@@ -174,6 +197,7 @@ public class DialogSheet {
         positiveButton = (Button) dialog.findViewById(R.id.buttonPositive);
         negativeButton = (Button) dialog.findViewById(R.id.buttonNegative);
         textContainer = (RelativeLayout) dialog.findViewById(R.id.textContainer);
+        messageContainer = (LinearLayout) dialog.findViewById(R.id.messageContainer);
         int bgcolor = Utils.getThemeBgColor(context);
         if (bgcolor!=-1) {
             dialog.findViewById(R.id.mainDialogContainer).setBackgroundColor(bgcolor);

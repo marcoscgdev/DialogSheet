@@ -19,8 +19,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
         android:checked="true"
         android:text="Show icon"/>
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/customViewCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:checked="false"
+        android:text="Show custom view"/>
 
 </RelativeLayout>

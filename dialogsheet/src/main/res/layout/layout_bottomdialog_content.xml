@@ -37,23 +37,33 @@
                 android:textColor="#000000"
                 android:ellipsize="end"
                 style="@style/TextAppearance.AppCompat.Title"
-                tools:text="Title"/>
+                tools:text="Title"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"/>
 
             <ScrollView
                 android:id="@+id/scrollMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:scrollbarThumbVertical="@android:color/darker_gray"
                 android:scrollbarSize="4dp">
 
-                <TextView
-                    android:id="@+id/dialogMessage"
+                <LinearLayout
+                    android:id="@+id/messageContainer"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#757575"
-                    style="@style/TextAppearance.AppCompat.Subhead"
-                    tools:text="Looooooooooooooooong and loooooooong message here."/>
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/dialogMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#757575"
+                        style="@style/TextAppearance.AppCompat.Subhead"
+                        tools:text="Looooooooooooooooong and loooooooong message here."
+                        android:visibility="gone"/>
+
+                </LinearLayout>
 
             </ScrollView>
 

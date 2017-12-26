@@ -42,10 +42,10 @@ public class Utils {
         return outValue.data;
     }
 
-    static void setButton(Context context, @ColorInt int color, Button button, boolean colored) {
+    static void setButton(@ColorInt int bgColor, @ColorInt int color, Button button, boolean colored) {
         if (!colored) {
-            if (getThemeBgColor(context)!=-1)
-                color = getThemeBgColor(context);
+            if (bgColor!=-1)
+                color = bgColor;
             else
                 color = Color.parseColor("#ffffff");
         }

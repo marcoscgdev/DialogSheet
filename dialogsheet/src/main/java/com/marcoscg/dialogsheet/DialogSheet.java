@@ -27,7 +27,7 @@ public class DialogSheet {
 
     private Context context;
     private Dialog dialog;
-    private int buttonColor = -1;
+    private int buttonColor = -1, backgroundColor = -1;
     private boolean showButtons = false;
 
     private TextView titleTextView, messageTextView;
@@ -141,6 +141,16 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setBackgroundColor(@ColorInt int backgroundColor) {
+        this.backgroundColor = backgroundColor;
+        return this;
+    }
+
+    public DialogSheet setBackgroundColorRes(@ColorRes int backgroundColorRes) {
+        this.backgroundColor = ContextCompat.getColor(context, backgroundColorRes);
+        return this;
+    }
+
     public DialogSheet setCancelable(boolean cancelable) {
         dialog.setCancelable(cancelable);
         return this;
@@ -164,6 +174,14 @@ public class DialogSheet {
     }
 
     public void show() {
+        if (backgroundColor==-1)
+            backgroundColor = Utils.getThemeBgColor(context);
+        if (backgroundColor!=-1) {
+            dialog.findViewById(R.id.mainDialogContainer).setBackgroundColor(backgroundColor);
+            titleTextView.setTextColor(Utils.getTextColor(backgroundColor));
+            messageTextView.setTextColor(Utils.getTextColorSec(backgroundColor));
+        }
+
         if (!showButtons)
             textContainer.setPadding(0,0,0,0);
         else {
@@ -172,8 +190,8 @@ public class DialogSheet {
                 color = buttonColor;
             else color = Utils.getThemeAccentColor(context);
             negativeButton.setTextColor(color);
-            Utils.setButton(context, color, positiveButton, true);
-            Utils.setButton(context, color, negativeButton, false);
+            Utils.setButton(backgroundColor, color, positiveButton, true);
+            Utils.setButton(backgroundColor, color, negativeButton, false);
             positiveButton.setTextColor(Utils.buttonTextColor(color));
         }
 
@@ -198,12 +216,6 @@ public class DialogSheet {
         negativeButton = (Button) dialog.findViewById(R.id.buttonNegative);
         textContainer = (RelativeLayout) dialog.findViewById(R.id.textContainer);
         messageContainer = (LinearLayout) dialog.findViewById(R.id.messageContainer);
-        int bgcolor = Utils.getThemeBgColor(context);
-        if (bgcolor!=-1) {
-            dialog.findViewById(R.id.mainDialogContainer).setBackgroundColor(bgcolor);
-            titleTextView.setTextColor(Utils.getTextColor(bgcolor));
-            messageTextView.setTextColor(Utils.getTextColorSec(bgcolor));
-        }
     }
 
     private void showIcon() {

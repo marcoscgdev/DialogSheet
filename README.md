@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 1.0.3-fix.
+#### Current release: 1.0.4.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
@@ -16,7 +16,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/1.0.2/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/1.0.4/app-debug.apk).
 
 ---
 
@@ -38,7 +38,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-compile 'com.github.marcoscgdev:DialogSheet:1.0.3-fix'
+compile 'com.github.marcoscgdev:DialogSheet:1.0.4'
 ```
 
 ### Creating the dialog
@@ -49,6 +49,7 @@ Here is a complete snippet of it usage:
 new DialogSheet(this)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
+    .setCancelable(false)
     .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
         @Override
         public void onClick(View v) {
@@ -64,6 +65,26 @@ new DialogSheet(this)
     .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
     .show();
 ```
+
+#### (TIP) Adding a custom view:
+ 
+  - Via inflated view:
+  
+  ```java
+  View view = View.inflate(context, R.layout.custom_dialog_view, null);
+  dialogSheet.setView(view);
+  ```
+  
+  - Via layout resource:
+ 
+ ```java
+ dialogSheet.setView(R.layout.custom_dialog_view);
+ 
+ // Access dialog custom inflated view
+View inflatedView = dialogSheet.getInflatedView();
+Button button = (Button) inflatedView.findViewById(R.id.customButton);
+...
+ ```
 
 ---
 >See the *sample project* to clarify any queries you may have.

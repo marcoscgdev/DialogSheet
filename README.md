@@ -80,11 +80,11 @@ dialogSheet.setCancelable(false)
     .setPositiveButton(android.R.string.ok) {
         // Your action
     }
-   .setNegativeButton(android.R.string.cancel) {
+    .setNegativeButton(android.R.string.cancel) {
         // Your action
     }
-    .setBackgroundColor(Color.WHITE)
-    .setButtonsColorRes(R.color.colorPrimary)
+    .setBackgroundColor(Color.BLACK) // Your custom background color
+    .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
     .show()
 ```
 

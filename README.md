@@ -67,6 +67,27 @@ new DialogSheet(this)
     .show();
 ```
 
+### Creating the dialog with Kotlin
+
+Here is a complete snippet of it usage:
+
+```java
+val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
+dialogSheet.setCancelable(false)
+    .setTitle(R.string.app_name)
+    .setMessage(R.string.lorem)
+
+   .setPositiveButton(android.R.string.ok) {
+	  // Your action
+   }
+   .setNegativeButton(android.R.string.cancel) {
+	// Your action
+   }
+   .setBackgroundColor(Color.WHITE)
+   .setButtonsColorRes(R.color.colorPrimary)
+   .show()
+```
+
 #### (TIP) Adding a custom view:
  
   - Via inflated view:

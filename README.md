@@ -41,7 +41,7 @@ Now add the dependency to your app build.gradle file:
 compile 'com.github.marcoscgdev:DialogSheet:1.0.5'
 ```
 
-### Creating the dialog
+### Creating the dialog with Java
 
 Here is a complete snippet of it usage:
 
@@ -76,16 +76,16 @@ val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
 dialogSheet.setCancelable(false)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
-
-   .setPositiveButton(android.R.string.ok) {
-	  // Your action
-   }
+    .setCancelable(false)
+    .setPositiveButton(android.R.string.ok) {
+        // Your action
+    }
    .setNegativeButton(android.R.string.cancel) {
-	// Your action
-   }
-   .setBackgroundColor(Color.WHITE)
-   .setButtonsColorRes(R.color.colorPrimary)
-   .show()
+        // Your action
+    }
+    .setBackgroundColor(Color.WHITE)
+    .setButtonsColorRes(R.color.colorPrimary)
+    .show()
 ```
 
 #### (TIP) Adding a custom view:

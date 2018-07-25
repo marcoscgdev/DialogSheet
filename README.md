@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 1.0.5.
+#### Current release: 1.0.6.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 

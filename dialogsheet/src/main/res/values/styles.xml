@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="BottomSheetDialogTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
+    <style name="DialogSheetTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="colorAccent">?bottomSheetAccent</item>
     </style>
 

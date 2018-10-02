@@ -208,7 +208,7 @@ public class DialogSheet {
         int posButtonTextColor = Color.WHITE;
 
         if (accentColor != -1) {
-            bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);
+            bottomSheetDialog = new BottomSheetDialog(context, R.style.DialogSheetTheme);
             posButtonTextColor = Utils.getTextColor(accentColor);
         } else bottomSheetDialog = new BottomSheetDialog(context);
 

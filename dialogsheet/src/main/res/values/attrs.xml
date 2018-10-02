@@ -8,5 +8,5 @@
   -->
 
 <resources>
-    <attr name="bottomSheetAccent" format="color"/>
+    <attr name="dialogSheetAccent" format="color"/>
 </resources>

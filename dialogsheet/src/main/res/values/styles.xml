@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="DialogSheetTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
-        <item name="colorAccent">?bottomSheetAccent</item>
+        <item name="colorAccent">?dialogSheetAccent</item>
     </style>
 
 </resources>

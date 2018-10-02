@@ -204,7 +204,7 @@ public class DialogSheet {
     }
 
     private void init(Context context) {
-        int accentColor = Utils.getAttrColor(context, "bottomSheetAccent");
+        int accentColor = Utils.getAttrColor(context, "dialogSheetAccent");
         int posButtonTextColor = Color.WHITE;
 
         if (accentColor != -1) {

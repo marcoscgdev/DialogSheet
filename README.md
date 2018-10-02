@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 1.0.6.
+#### Current release: 2.0.0-beta.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
@@ -16,7 +16,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/1.0.4/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.0-beta/app-debug.apk).
 
 ---
 
@@ -38,7 +38,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:1.0.6'
+implementation 'com.github.marcoscgdev:DialogSheet:2.0.0-beta'
 ```
 
 ### Creating the dialog with Java
@@ -86,6 +86,14 @@ dialogSheet.setCancelable(false)
     .setBackgroundColor(Color.BLACK) // Your custom background color
     .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
     .show()
+```
+
+### Colorize buttons
+
+Add this atribute to your main app theme
+
+```xml
+<item name="dialogSheetAccent">@color/colorAccent</item>
 ```
 
 #### (TIP) Adding a custom view:

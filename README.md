@@ -88,6 +88,14 @@ dialogSheet.setCancelable(false)
     .show()
 ```
 
+### Colorize buttons
+
+Add this atribute to your main app theme
+
+```xml
+<item name="bottomSheetAccent">@color/colorAccent</item>
+```
+
 #### (TIP) Adding a custom view:
  
   - Via inflated view:

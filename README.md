@@ -93,7 +93,7 @@ dialogSheet.setCancelable(false)
 Add this atribute to your main app theme
 
 ```xml
-<item name="bottomSheetAccent">@color/colorAccent</item>
+<item name="dialogSheetAccent">@color/colorAccent</item>
 ```
 
 #### (TIP) Adding a custom view:

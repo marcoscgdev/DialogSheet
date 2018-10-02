@@ -1,19 +1,22 @@
 package com.marcoscg.dialogsheet;
 
-import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.support.design.button.MaterialButton;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -26,13 +29,13 @@ import android.widget.TextView;
 public class DialogSheet {
 
     private Context context;
-    private Dialog dialog;
-    private int buttonColor = -1, backgroundColor = -1;
+    private BottomSheetDialog bottomSheetDialog;
+    private int backgroundColor = -1;
     private boolean showButtons = false;
 
     private TextView titleTextView, messageTextView;
     private ImageView iconImageView;
-    private Button positiveButton, negativeButton;
+    private MaterialButton positiveButton, negativeButton;
     private RelativeLayout textContainer;
     private LinearLayout messageContainer;
 
@@ -97,7 +100,7 @@ public class DialogSheet {
         positiveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
+                bottomSheetDialog.dismiss();
                 if (onPositiveClickListener!=null)
                     onPositiveClickListener.onClick(view);
             }
@@ -112,7 +115,7 @@ public class DialogSheet {
         negativeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dialog.dismiss();
+                bottomSheetDialog.dismiss();
                 if (onNegativeClickListener!=null)
                     onNegativeClickListener.onClick(view);
             }
@@ -131,13 +134,13 @@ public class DialogSheet {
         return this;
     }
 
+    @Deprecated
     public DialogSheet setButtonsColor(@ColorInt int buttonsColor) {
-        this.buttonColor = buttonsColor;
         return this;
     }
 
+    @Deprecated
     public DialogSheet setButtonsColorRes(@ColorRes int buttonsColorRes) {
-        this.buttonColor = ContextCompat.getColor(context, buttonsColorRes);
         return this;
     }
 
@@ -152,7 +155,7 @@ public class DialogSheet {
     }
 
     public DialogSheet setCancelable(boolean cancelable) {
-        dialog.setCancelable(cancelable);
+        bottomSheetDialog.setCancelable(cancelable);
         return this;
     }
 
@@ -177,45 +180,59 @@ public class DialogSheet {
         if (backgroundColor==-1)
             backgroundColor = Utils.getThemeBgColor(context);
         if (backgroundColor!=-1) {
-            dialog.findViewById(R.id.mainDialogContainer).setBackgroundColor(backgroundColor);
+            bottomSheetDialog.findViewById(R.id.mainDialogContainer).setBackgroundColor(backgroundColor);
             titleTextView.setTextColor(Utils.getTextColor(backgroundColor));
             messageTextView.setTextColor(Utils.getTextColorSec(backgroundColor));
         }
 
         if (!showButtons)
             textContainer.setPadding(0,0,0,0);
-        else {
-            int color;
-            if (buttonColor!=-1)
-                color = buttonColor;
-            else color = Utils.getThemeAccentColor(context);
-            negativeButton.setTextColor(color);
-            Utils.setButton(backgroundColor, color, positiveButton, true);
-            Utils.setButton(backgroundColor, color, negativeButton, false);
-            positiveButton.setTextColor(Utils.buttonTextColor(color));
-        }
 
-        dialog.show();
+        bottomSheetDialog.show();
+
+        Configuration configuration = context.getResources().getConfiguration();
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
+                configuration.screenWidthDp > 400) {
+            // you can go more fancy and vary the bottom sheet width depending on the screen width
+            // see recommendations on https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs
+            bottomSheetDialog.getWindow().setLayout(Utils.dpToPx(400), -1);
+        }
     }
 
     public void dismiss() {
-        dialog.dismiss();
+        bottomSheetDialog.dismiss();
     }
 
     private void init(Context context) {
-        dialog = new Dialog(context, R.style.BottomDialogTheme);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.layout_bottomdialog);
-        dialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setGravity(Gravity.BOTTOM);
+        int accentColor = Utils.getAttrColor(context, "bottomSheetAccent");
+        int posButtonTextColor = Color.WHITE;
 
-        titleTextView = (TextView) dialog.findViewById(R.id.dialogTitle);
-        messageTextView = (TextView) dialog.findViewById(R.id.dialogMessage);
-        iconImageView = (ImageView) dialog.findViewById(R.id.dialogIcon);
-        positiveButton = (Button) dialog.findViewById(R.id.buttonPositive);
-        negativeButton = (Button) dialog.findViewById(R.id.buttonNegative);
-        textContainer = (RelativeLayout) dialog.findViewById(R.id.textContainer);
-        messageContainer = (LinearLayout) dialog.findViewById(R.id.messageContainer);
+        if (accentColor != -1) {
+            bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);
+            posButtonTextColor = Utils.getTextColor(accentColor);
+        } else bottomSheetDialog = new BottomSheetDialog(context);
+
+        bottomSheetDialog.setContentView(R.layout.layout_bottomdialog);
+
+        bottomSheetDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                BottomSheetDialog d = (BottomSheetDialog) dialog;
+                FrameLayout bottomSheet = (FrameLayout) d.findViewById(android.support.design.R.id.design_bottom_sheet);
+                BottomSheetBehavior.from(bottomSheet)
+                        .setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        });
+
+        titleTextView = (TextView) bottomSheetDialog.findViewById(R.id.dialogTitle);
+        messageTextView = (TextView) bottomSheetDialog.findViewById(R.id.dialogMessage);
+        iconImageView = (ImageView) bottomSheetDialog.findViewById(R.id.dialogIcon);
+        positiveButton = (MaterialButton) bottomSheetDialog.findViewById(R.id.buttonPositive);
+        negativeButton = (MaterialButton) bottomSheetDialog.findViewById(R.id.buttonNegative);
+        textContainer = (RelativeLayout) bottomSheetDialog.findViewById(R.id.textContainer);
+        messageContainer = (LinearLayout) bottomSheetDialog.findViewById(R.id.messageContainer);
+
+        positiveButton.setTextColor(posButtonTextColor);
     }
 
     private void showIcon() {

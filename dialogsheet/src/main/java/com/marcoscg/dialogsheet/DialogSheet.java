@@ -15,12 +15,15 @@ import android.support.design.button.MaterialButton;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import static com.marcoscg.dialogsheet.Utils.dpToPx;
 
 /**
  * Created by @MarcosCGdev on 01/12/2017.
@@ -185,8 +188,23 @@ public class DialogSheet {
             messageTextView.setTextColor(Utils.getTextColorSec(backgroundColor));
         }
 
-        if (!showButtons)
-            textContainer.setPadding(0,0,0,0);
+        if (!showButtons) {
+            int bottomPadding = 0;
+            int topPadding = 0;
+
+            if (messageTextView.getText() != null && !TextUtils.isEmpty(messageTextView.getText())) {
+                bottomPadding = dpToPx(24);
+
+                if (titleTextView.getText() == null || TextUtils.isEmpty(titleTextView.getText()))
+                    topPadding = dpToPx(24);
+            }
+
+            textContainer.setPadding(0,topPadding,0, bottomPadding);
+        } else {
+            if ((titleTextView.getText() == null || TextUtils.isEmpty(titleTextView.getText()))
+                    && messageTextView.getText() != null && !TextUtils.isEmpty(messageTextView.getText()))
+                textContainer.setPadding(0,dpToPx(24),0, 0);
+        }
 
         bottomSheetDialog.show();
 
@@ -195,7 +213,7 @@ public class DialogSheet {
                 configuration.screenWidthDp > 400) {
             // you can go more fancy and vary the bottom sheet width depending on the screen width
             // see recommendations on https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs
-            bottomSheetDialog.getWindow().setLayout(Utils.dpToPx(400), -1);
+            bottomSheetDialog.getWindow().setLayout(dpToPx(400), -1);
         }
     }
 

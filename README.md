@@ -5,18 +5,18 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.0.0.
+#### Current release: 2.0.1.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
 ---
 
 ## Screenshots
-<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/1.png" width="350"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/2.png" width="350"></kbd>
+<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_1.png" width="350"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_2.png" width="350"></kbd>
 
-<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/3.png" width="620"></kbd>
+<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.0-beta/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.1/app-debug.apk).
 
 ---
 
@@ -38,7 +38,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.0.0'
+implementation 'com.github.marcoscgdev:DialogSheet:2.0.1'
 ```
 
 ### Creating the dialog with Java
@@ -83,6 +83,7 @@ dialogSheet.setCancelable(false)
     .setNegativeButton(android.R.string.cancel) {
         // Your action
     }
+    .setRoundedCorners(false) // Default value is true
     .setBackgroundColor(Color.BLACK) // Your custom background color
     .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
     .show()
@@ -96,7 +97,15 @@ Add this atribute to your main app theme
 <item name="dialogSheetAccent">@color/colorAccent</item>
 ```
 
-#### (TIP) Adding a custom view:
+### Customize corner radius
+
+Simply override this dimen with your desired size
+
+```xml
+<dimen name="dialog_sheet_corner_radius">16dp</dimen>
+```
+
+### Adding a custom view:
  
   - Via inflated view:
   

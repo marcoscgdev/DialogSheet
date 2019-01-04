@@ -1,6 +1,7 @@
 package com.marcoscg.dialogsheetsample;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
             });
 
         }
+
+        if(!((AppCompatCheckBox)findViewById(R.id.cornersCheckBox)).isChecked())
+            dialogSheet.setRoundedCorners(false);
 
         if(((AppCompatCheckBox)findViewById(R.id.iconCheckBox)).isChecked())
             dialogSheet.setIcon(R.mipmap.ic_launcher);

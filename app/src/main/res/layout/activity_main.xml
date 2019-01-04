@@ -14,22 +14,37 @@
         android:text="Show DialogSheet"
         android:layout_centerInParent="true"/>
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/iconCheckBox"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:weightSum="3"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:checked="true"
-        android:text="Show icon"/>
+        android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatCheckBox
-        android:id="@+id/customViewCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:checked="false"
-        android:text="Show custom view"/>
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/iconCheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Icon"/>
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cornersCheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="Rounded"/>
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/customViewCheckBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="Custom view"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

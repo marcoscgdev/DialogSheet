@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -162,6 +164,16 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setRoundedCorners(boolean roundedCorners) {
+        if (!roundedCorners) {
+            View bgView = bottomSheetDialog.findViewById(R.id.mainDialogContainer);
+            if (bgView != null)
+                bgView.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        }
+
+        return this;
+    }
+
     public DialogSheet setView(View view) {
         messageContainer.addView(view);
         if (inflatedView==null)
@@ -183,7 +195,14 @@ public class DialogSheet {
         if (backgroundColor==-1)
             backgroundColor = Utils.getThemeBgColor(context);
         if (backgroundColor!=-1) {
-            bottomSheetDialog.findViewById(R.id.mainDialogContainer).setBackgroundColor(backgroundColor);
+            Drawable bgDrawable = null;
+            View bgView = bottomSheetDialog.findViewById(R.id.mainDialogContainer);
+            if (bgView != null)
+                bgDrawable = bgView.getBackground();
+
+            if (bgDrawable != null)
+                bgDrawable.setColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN);
+
             titleTextView.setTextColor(Utils.getTextColor(backgroundColor));
             messageTextView.setTextColor(Utils.getTextColorSec(backgroundColor));
         }

@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="DialogSheetTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="colorAccent">?dialogSheetAccent</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
     </style>
 
 </resources>

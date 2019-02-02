@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
@@ -26,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import static com.marcoscg.dialogsheet.Utils.dpToPx;
+import static com.marcoscg.dialogsheet.Utils.isColorLight;
 
 /**
  * Created by @MarcosCGdev on 01/12/2017.
@@ -36,7 +38,7 @@ public class DialogSheet {
     private Context context;
     private BottomSheetDialog bottomSheetDialog;
     private int backgroundColor = -1;
-    private boolean showButtons = false;
+    private boolean showButtons = false, coloredNavigationBar = false;
 
     private TextView titleTextView, messageTextView;
     private ImageView iconImageView;
@@ -155,7 +157,12 @@ public class DialogSheet {
     }
 
     public DialogSheet setBackgroundColorRes(@ColorRes int backgroundColorRes) {
-        this.backgroundColor = ContextCompat.getColor(context, backgroundColorRes);
+        setBackgroundColor(ContextCompat.getColor(context, backgroundColorRes));
+        return this;
+    }
+
+    public DialogSheet setColoredNavigationBar(boolean coloredNavigationBar) {
+        this.coloredNavigationBar = coloredNavigationBar;
         return this;
     }
 
@@ -206,6 +213,8 @@ public class DialogSheet {
             titleTextView.setTextColor(Utils.getTextColor(backgroundColor));
             messageTextView.setTextColor(Utils.getTextColorSec(backgroundColor));
         }
+
+        setColoredNavBar(coloredNavigationBar);
 
         if (!showButtons) {
             int bottomPadding = 0;
@@ -274,6 +283,27 @@ public class DialogSheet {
 
     private void showIcon() {
         iconImageView.setVisibility(View.VISIBLE);
+    }
+
+    private void setColoredNavBar(boolean coloredNavigationBar) {
+        if (coloredNavigationBar && bottomSheetDialog.getWindow() != null && Build.VERSION.SDK_INT >= 21) {
+            if (isColorLight(backgroundColor)) {
+                if (Build.VERSION.SDK_INT >= 26) {
+                    bottomSheetDialog.getWindow().setNavigationBarColor(backgroundColor);
+                    int flags = bottomSheetDialog.getWindow().getDecorView().getSystemUiVisibility();
+                    flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+                    bottomSheetDialog.getWindow().getDecorView().setSystemUiVisibility(flags);
+                }
+            } else {
+                bottomSheetDialog.getWindow().setNavigationBarColor(backgroundColor);
+
+                if (Build.VERSION.SDK_INT >= 26) {
+                    int flags = bottomSheetDialog.getWindow().getDecorView().getSystemUiVisibility();
+                    flags  &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+                    bottomSheetDialog.getWindow().getDecorView().setSystemUiVisibility(flags);
+                }
+            }
+        }
     }
 
 }

@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         DialogSheet dialogSheet = new DialogSheet(MainActivity.this)
                 .setTitle(R.string.app_name)
                 .setMessage(R.string.lorem)
+                .setColoredNavigationBar(true)
                 .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
                     @Override
                     public void onClick(View view) {

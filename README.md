@@ -49,6 +49,7 @@ Here is a complete snippet of it usage:
 new DialogSheet(this)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
+    .setColoredNavigationBar(true)
     .setCancelable(false)
     .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
         @Override
@@ -73,9 +74,9 @@ Here is a complete snippet of it usage:
 
 ```java
 val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
-dialogSheet.setCancelable(false)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
+    .setColoredNavigationBar(true)
     .setCancelable(false)
     .setPositiveButton(android.R.string.ok) {
         // Your action

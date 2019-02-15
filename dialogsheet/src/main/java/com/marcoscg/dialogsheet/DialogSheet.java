@@ -37,7 +37,7 @@ public class DialogSheet {
 
     private Context context;
     private BottomSheetDialog bottomSheetDialog;
-    private int backgroundColor = -1;
+    private int backgroundColor = -1, titleTextColor = -1, messageTextColor = -1;
     private boolean showButtons = false, coloredNavigationBar = false;
 
     private TextView titleTextView, messageTextView;
@@ -161,6 +161,26 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setTitleTextColor(@ColorInt int titleTextColor) {
+        this.titleTextColor = titleTextColor;
+        return this;
+    }
+
+    public DialogSheet setTitleTextColorRes(@ColorRes int titleTextColorRes) {
+        setTitleTextColor(ContextCompat.getColor(context, titleTextColorRes));
+        return this;
+    }
+
+    public DialogSheet setMessageTextColor(@ColorInt int messageTextColor) {
+        this.messageTextColor = messageTextColor;
+        return this;
+    }
+
+    public DialogSheet setMessageTextColorRes(@ColorRes int messageTextColorRes) {
+        setMessageTextColor(ContextCompat.getColor(context, messageTextColorRes));
+        return this;
+    }
+
     public DialogSheet setColoredNavigationBar(boolean coloredNavigationBar) {
         this.coloredNavigationBar = coloredNavigationBar;
         return this;
@@ -175,7 +195,7 @@ public class DialogSheet {
         if (!roundedCorners) {
             View bgView = bottomSheetDialog.findViewById(R.id.mainDialogContainer);
             if (bgView != null)
-                bgView.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                bgView.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.dialog_sheet_main_background));
         }
 
         return this;
@@ -209,10 +229,15 @@ public class DialogSheet {
 
             if (bgDrawable != null)
                 bgDrawable.setColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN);
-
-            titleTextView.setTextColor(Utils.getTextColor(backgroundColor));
-            messageTextView.setTextColor(Utils.getTextColorSec(backgroundColor));
         }
+
+        if (titleTextColor==-1)
+            titleTextColor = Utils.getTextColor(backgroundColor);
+        if (messageTextColor==-1)
+            messageTextColor = Utils.getTextColorSec(backgroundColor);
+
+        titleTextView.setTextColor(titleTextColor);
+        messageTextView.setTextColor(messageTextColor);
 
         setColoredNavBar(coloredNavigationBar);
 

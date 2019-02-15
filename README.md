@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.0.1.
+#### Current release: 2.0.2.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
@@ -38,7 +38,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.0.1'
+implementation 'com.github.marcoscgdev:DialogSheet:2.0.2'
 ```
 
 ### Creating the dialog with Java
@@ -49,6 +49,7 @@ Here is a complete snippet of it usage:
 new DialogSheet(this)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
+    .setColoredNavigationBar(true)
     .setCancelable(false)
     .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
         @Override
@@ -73,9 +74,9 @@ Here is a complete snippet of it usage:
 
 ```java
 val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
-dialogSheet.setCancelable(false)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
+    .setColoredNavigationBar(true)
     .setCancelable(false)
     .setPositiveButton(android.R.string.ok) {
         // Your action

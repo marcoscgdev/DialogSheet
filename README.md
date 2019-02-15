@@ -90,7 +90,7 @@ val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
     .show()
 ```
 
-### Colorize buttons
+### Colorize buttons (necessary)
 
 Add this atribute to your main app theme
 

@@ -214,6 +214,11 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        bottomSheetDialog.setOnDismissListener(onDismissListener);
+        return this;
+    }
+
     public View getInflatedView() {
         return inflatedView;
     }

@@ -1,7 +1,6 @@
 package com.marcoscg.dialogsheetsample;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void createAndShowDialog() {
@@ -53,21 +51,20 @@ public class MainActivity extends AppCompatActivity {
 
             // Access dialog custom inflated view
             View inflatedView = dialogSheet.getInflatedView();
-            Button button = (Button) inflatedView.findViewById(R.id.customButton);
+            Button button = inflatedView.findViewById(R.id.customButton);
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(MainActivity.this, "I'm a custom button", Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
 
-        if(!((AppCompatCheckBox)findViewById(R.id.cornersCheckBox)).isChecked())
+        if (!((AppCompatCheckBox)findViewById(R.id.cornersCheckBox)).isChecked())
             dialogSheet.setRoundedCorners(false);
 
-        if(((AppCompatCheckBox)findViewById(R.id.iconCheckBox)).isChecked())
-            dialogSheet.setIcon(R.mipmap.ic_launcher);
+        if (((AppCompatCheckBox)findViewById(R.id.iconCheckBox)).isChecked())
+            dialogSheet.setIconResource(R.mipmap.ic_launcher);
 
         dialogSheet.show();
 

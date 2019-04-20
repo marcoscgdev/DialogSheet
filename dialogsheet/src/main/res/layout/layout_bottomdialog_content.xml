@@ -95,8 +95,8 @@
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:letterSpacing="0"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             style="@style/Widget.MaterialComponents.Button.TextButton"/>

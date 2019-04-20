@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -38,7 +39,7 @@ public class DialogSheet {
     private Context context;
     private BottomSheetDialog bottomSheetDialog;
     private int backgroundColor = -1, titleTextColor = -1, messageTextColor = -1;
-    private boolean showButtons = false, coloredNavigationBar = false;
+    private boolean coloredNavigationBar = false;
 
     private TextView titleTextView, messageTextView;
     private ImageView iconImageView;
@@ -62,8 +63,13 @@ public class DialogSheet {
     }
 
     public DialogSheet setTitle(CharSequence title) {
-        titleTextView.setVisibility(View.VISIBLE);
-        titleTextView.setText(title);
+        if (title == null)
+            titleTextView.setVisibility(View.GONE);
+        else {
+            titleTextView.setVisibility(View.VISIBLE);
+            titleTextView.setText(title);
+        }
+
         return this;
     }
 
@@ -73,8 +79,13 @@ public class DialogSheet {
     }
 
     public DialogSheet setMessage(CharSequence message) {
-        messageTextView.setVisibility(View.VISIBLE);
-        messageTextView.setText(message);
+        if (message == null)
+            messageTextView.setVisibility(View.GONE);
+        else {
+            messageTextView.setVisibility(View.VISIBLE);
+            messageTextView.setText(message);
+        }
+
         return this;
     }
 
@@ -83,18 +94,65 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setIconDrawable(Drawable icon) {
+        if (icon == null)
+            hideIcon();
+        else {
+            showIcon();
+            iconImageView.setImageDrawable(icon);
+        }
+
+        return this;
+    }
+
+    public DialogSheet setIconBitmap(Bitmap icon) {
+        if (icon == null)
+            hideIcon();
+        else {
+            showIcon();
+            iconImageView.setImageBitmap(icon);
+        }
+
+        return this;
+    }
+
+    public DialogSheet setIconResource(@DrawableRes int icon) {
+        showIcon();
+        iconImageView.setImageResource(icon);
+
+        return this;
+    }
+
+    /**
+     * @deprecated use {@link #setIconDrawable(Drawable)} instead.
+     * @param icon
+     * @return
+     */
+    @Deprecated
     public DialogSheet setIcon(Drawable icon) {
-        showIcon();
-        iconImageView.setImageDrawable(icon);
+        setIconDrawable(icon);
+
         return this;
     }
 
+    /**
+     * @deprecated use {@link #setIconBitmap(Bitmap)} instead.
+     * @param icon
+     * @return
+     */
+    @Deprecated
     public DialogSheet setIcon(Bitmap icon) {
-        showIcon();
-        iconImageView.setImageBitmap(icon);
+        setIconBitmap(icon);
+
         return this;
     }
 
+    /**
+     * @deprecated use {@link #setIconResource(int)} instead.
+     * @param iconRes
+     * @return
+     */
+    @Deprecated
     public DialogSheet setIcon(@DrawableRes int iconRes) {
         showIcon();
         iconImageView.setImageResource(iconRes);
@@ -102,32 +160,21 @@ public class DialogSheet {
     }
 
     public DialogSheet setPositiveButton(CharSequence text, final OnPositiveClickListener onPositiveClickListener) {
-        positiveButton.setVisibility(View.VISIBLE);
-        positiveButton.setText(text);
-        positiveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetDialog.dismiss();
-                if (onPositiveClickListener!=null)
-                    onPositiveClickListener.onClick(view);
-            }
-        });
-        showButtons = true;
-        return this;
-    }
+        if (text == null)
+            positiveButton.setVisibility(View.GONE);
+        else {
+            positiveButton.setVisibility(View.VISIBLE);
+            positiveButton.setText(text);
+            positiveButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bottomSheetDialog.dismiss();
+                    if (onPositiveClickListener!=null)
+                        onPositiveClickListener.onClick(view);
+                }
+            });
+        }
 
-    public DialogSheet setNegativeButton(CharSequence text, final OnNegativeClickListener onNegativeClickListener) {
-        negativeButton.setVisibility(View.VISIBLE);
-        negativeButton.setText(text);
-        negativeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bottomSheetDialog.dismiss();
-                if (onNegativeClickListener!=null)
-                    onNegativeClickListener.onClick(view);
-            }
-        });
-        showButtons = true;
         return this;
     }
 
@@ -136,8 +183,34 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setNegativeButton(CharSequence text, final OnNegativeClickListener onNegativeClickListener) {
+        if (text == null)
+            negativeButton.setVisibility(View.GONE);
+        else {
+            negativeButton.setVisibility(View.VISIBLE);
+            negativeButton.setText(text);
+            negativeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bottomSheetDialog.dismiss();
+                    if (onNegativeClickListener!=null)
+                        onNegativeClickListener.onClick(view);
+                }
+            });
+        }
+
+        return this;
+    }
+
     public DialogSheet setNegativeButton(@StringRes int textRes, OnNegativeClickListener onNegativeClickListener) {
         setNegativeButton(context.getResources().getString(textRes), onNegativeClickListener);
+        return this;
+    }
+
+    public DialogSheet setButtonsTextAllCaps(boolean textAllCaps) {
+        positiveButton.setAllCaps(textAllCaps);
+        negativeButton.setAllCaps(textAllCaps);
+
         return this;
     }
 
@@ -186,6 +259,25 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setTitleTypeface(Typeface typeface) {
+        titleTextView.setTypeface(typeface);
+
+        return this;
+    }
+
+    public DialogSheet setMessageTypeface(Typeface typeface) {
+        messageTextView.setTypeface(typeface);
+
+        return this;
+    }
+
+    public DialogSheet setButtonsTypeface(Typeface typeface) {
+        negativeButton.setTypeface(typeface);
+        negativeButton.setTypeface(typeface);
+
+        return this;
+    }
+
     public DialogSheet setCancelable(boolean cancelable) {
         bottomSheetDialog.setCancelable(cancelable);
         return this;
@@ -202,13 +294,14 @@ public class DialogSheet {
     }
 
     public DialogSheet setView(View view) {
+        removePreviousMessageViews();
         messageContainer.addView(view);
-        if (inflatedView==null)
-            inflatedView = view;
+        inflatedView = view;
         return this;
     }
 
     public DialogSheet setView(@LayoutRes int layoutRes) {
+        removePreviousMessageViews();
         inflatedView = View.inflate(context, layoutRes, null);
         setView(inflatedView);
         return this;
@@ -246,7 +339,7 @@ public class DialogSheet {
 
         setColoredNavBar(coloredNavigationBar);
 
-        if (!showButtons) {
+        if (!areButtonsVisible()) {
             int bottomPadding = 0;
             int topPadding = 0;
 
@@ -266,12 +359,12 @@ public class DialogSheet {
 
         bottomSheetDialog.show();
 
+        // Landscape fixed width
         Configuration configuration = context.getResources().getConfiguration();
         if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
                 configuration.screenWidthDp > 400) {
-            // you can go more fancy and vary the bottom sheet width depending on the screen width
-            // see recommendations on https://material.io/guidelines/components/bottom-sheets.html#bottom-sheets-specs
-            bottomSheetDialog.getWindow().setLayout(dpToPx(400), -1);
+            if (bottomSheetDialog.getWindow() != null)
+                bottomSheetDialog.getWindow().setLayout(dpToPx(400), -1);
         }
     }
 
@@ -315,6 +408,10 @@ public class DialogSheet {
         iconImageView.setVisibility(View.VISIBLE);
     }
 
+    private void hideIcon() {
+        iconImageView.setVisibility(View.GONE);
+    }
+
     private void setColoredNavBar(boolean coloredNavigationBar) {
         if (coloredNavigationBar && bottomSheetDialog.getWindow() != null && Build.VERSION.SDK_INT >= 21) {
             if (isColorLight(backgroundColor)) {
@@ -333,6 +430,16 @@ public class DialogSheet {
                     bottomSheetDialog.getWindow().getDecorView().setSystemUiVisibility(flags);
                 }
             }
+        }
+    }
+
+    private boolean areButtonsVisible() {
+        return positiveButton.getVisibility() == View.VISIBLE || negativeButton.getVisibility() == View.VISIBLE;
+    }
+
+    private void removePreviousMessageViews() {
+        for (int i=1; i < messageContainer.getChildCount(); i++) {
+            messageContainer.removeViewAt(i);
         }
     }
 

@@ -14,10 +14,10 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
-import android.support.design.button.MaterialButton;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatButton;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -42,7 +42,7 @@ public class DialogSheet {
 
     private TextView titleTextView, messageTextView;
     private ImageView iconImageView;
-    private MaterialButton positiveButton, negativeButton;
+    private AppCompatButton positiveButton, negativeButton;
     private RelativeLayout textContainer;
     private LinearLayout messageContainer;
 
@@ -395,8 +395,8 @@ public class DialogSheet {
         titleTextView = (TextView) bottomSheetDialog.findViewById(R.id.dialogTitle);
         messageTextView = (TextView) bottomSheetDialog.findViewById(R.id.dialogMessage);
         iconImageView = (ImageView) bottomSheetDialog.findViewById(R.id.dialogIcon);
-        positiveButton = (MaterialButton) bottomSheetDialog.findViewById(R.id.buttonPositive);
-        negativeButton = (MaterialButton) bottomSheetDialog.findViewById(R.id.buttonNegative);
+        positiveButton = (AppCompatButton) bottomSheetDialog.findViewById(R.id.buttonPositive);
+        negativeButton = (AppCompatButton) bottomSheetDialog.findViewById(R.id.buttonNegative);
         textContainer = (RelativeLayout) bottomSheetDialog.findViewById(R.id.textContainer);
         messageContainer = (LinearLayout) bottomSheetDialog.findViewById(R.id.messageContainer);
 

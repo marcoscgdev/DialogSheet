@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -38,7 +37,7 @@ public class DialogSheet {
 
     private Context context;
     private BottomSheetDialog bottomSheetDialog;
-    private int backgroundColor = -1, titleTextColor = -1, messageTextColor = -1;
+    private int backgroundColor = 0, titleTextColor = 0, messageTextColor = 0;
     private boolean coloredNavigationBar = false;
 
     private TextView titleTextView, messageTextView;
@@ -317,9 +316,9 @@ public class DialogSheet {
     }
 
     public void show() {
-        if (backgroundColor==-1)
-            backgroundColor = Utils.getThemeBgColor(context);
-        if (backgroundColor!=-1) {
+        if (backgroundColor==0)
+            backgroundColor = Utils.getAttrColor(context, android.R.attr.windowBackground);
+        if (backgroundColor!=0) {
             Drawable bgDrawable = null;
             View bgView = bottomSheetDialog.findViewById(R.id.mainDialogContainer);
             if (bgView != null)
@@ -329,9 +328,9 @@ public class DialogSheet {
                 bgDrawable.setColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN);
         }
 
-        if (titleTextColor==-1)
+        if (titleTextColor==0)
             titleTextColor = Utils.getTextColor(backgroundColor);
-        if (messageTextColor==-1)
+        if (messageTextColor==0)
             messageTextColor = Utils.getTextColorSec(backgroundColor);
 
         titleTextView.setTextColor(titleTextColor);
@@ -373,7 +372,7 @@ public class DialogSheet {
     }
 
     private void init(Context context) {
-        int accentColor = Utils.getAttrColor(context, "dialogSheetAccent");
+        int accentColor = Utils.getAttrColor(context, R.attr.dialogSheetAccent);
         int posButtonTextColor = Color.WHITE;
 
         if (accentColor != -1) {

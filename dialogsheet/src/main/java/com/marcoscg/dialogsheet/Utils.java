@@ -2,6 +2,7 @@ package com.marcoscg.dialogsheet;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.util.TypedValue;
@@ -10,7 +11,7 @@ import android.util.TypedValue;
  * Created by @MarcosCGdev on 01/12/2017.
  */
 
-public class Utils {
+class Utils {
 
     static boolean isColorLight(@ColorInt int color) {
         if (color == Color.BLACK) return false;
@@ -27,21 +28,14 @@ public class Utils {
         return isColorLight(color) ? Color.parseColor("#8A000000") : Color.parseColor("#B3FFFFFF");
     }
 
-    static int getThemeBgColor(Context context) {
+    static int getAttrColor(Context context, int attr) {
         TypedValue typedValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(android.R.attr.windowBackground, typedValue, true)) {
-            return typedValue.data;
-        }
-        return -1;
-    }
 
-    static int getAttrColor(Context context, String attr) {
-        int colorAttr = context.getResources().getIdentifier(attr, "attr", context.getPackageName());
-        TypedValue outValue = new TypedValue();
-        if (context.getTheme().resolveAttribute(colorAttr, outValue, true))
-            return outValue.data;
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{attr});
+        int color = a.getColor(0, 0);
+        a.recycle();
 
-        return -1;
+        return color;
     }
 
     static int dpToPx(int dp) {

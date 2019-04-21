@@ -5,7 +5,9 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.0.4.
+#### Current release: 2.0.5.
+
+ - Now with AndroidX support.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
@@ -38,7 +40,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.0.4'
+implementation 'com.github.marcoscgdev:DialogSheet:2.0.5'
 ```
 
 ### Creating the dialog with Java

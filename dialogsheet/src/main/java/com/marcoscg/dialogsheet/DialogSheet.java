@@ -18,13 +18,13 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import static com.marcoscg.dialogsheet.Utils.dpToPx;
 import static com.marcoscg.dialogsheet.Utils.isColorLight;
@@ -40,8 +40,8 @@ public class DialogSheet {
     private int backgroundColor = 0, titleTextColor = 0, messageTextColor = 0;
     private boolean coloredNavigationBar = false;
 
-    private TextView titleTextView, messageTextView;
-    private ImageView iconImageView;
+    private AppCompatTextView titleTextView, messageTextView;
+    private AppCompatImageView iconImageView;
     private AppCompatButton positiveButton, negativeButton;
     private RelativeLayout textContainer;
     private LinearLayout messageContainer;
@@ -392,13 +392,13 @@ public class DialogSheet {
             }
         });
 
-        titleTextView = (TextView) bottomSheetDialog.findViewById(R.id.dialogTitle);
-        messageTextView = (TextView) bottomSheetDialog.findViewById(R.id.dialogMessage);
-        iconImageView = (ImageView) bottomSheetDialog.findViewById(R.id.dialogIcon);
-        positiveButton = (AppCompatButton) bottomSheetDialog.findViewById(R.id.buttonPositive);
-        negativeButton = (AppCompatButton) bottomSheetDialog.findViewById(R.id.buttonNegative);
-        textContainer = (RelativeLayout) bottomSheetDialog.findViewById(R.id.textContainer);
-        messageContainer = (LinearLayout) bottomSheetDialog.findViewById(R.id.messageContainer);
+        titleTextView = bottomSheetDialog.findViewById(R.id.dialogTitle);
+        messageTextView = bottomSheetDialog.findViewById(R.id.dialogMessage);
+        iconImageView = bottomSheetDialog.findViewById(R.id.dialogIcon);
+        positiveButton = bottomSheetDialog.findViewById(R.id.buttonPositive);
+        negativeButton = bottomSheetDialog.findViewById(R.id.buttonNegative);
+        textContainer = bottomSheetDialog.findViewById(R.id.textContainer);
+        messageContainer = bottomSheetDialog.findViewById(R.id.messageContainer);
 
         positiveButton.setTextColor(posButtonTextColor);
     }

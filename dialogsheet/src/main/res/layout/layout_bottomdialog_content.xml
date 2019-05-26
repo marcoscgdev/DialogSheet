@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="80dp">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/dialogIcon"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -29,7 +29,7 @@
             android:layout_toEndOf="@+id/dialogIcon"
             android:orientation="vertical">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/dialogTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
+                    <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/dialogMessage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

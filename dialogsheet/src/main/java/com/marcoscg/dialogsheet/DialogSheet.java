@@ -14,15 +14,12 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -36,7 +33,7 @@ import static com.marcoscg.dialogsheet.Utils.isColorLight;
 public class DialogSheet {
 
     private Context context;
-    private BottomSheetDialog bottomSheetDialog;
+    private ExpandedBottomSheetDialog bottomSheetDialog;
     private int backgroundColor = 0, titleTextColor = 0, messageTextColor = 0;
     private boolean coloredNavigationBar = false;
 
@@ -253,6 +250,11 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setSingleLineTitle(boolean singleLine) {
+        titleTextView.setSingleLine(singleLine);
+        return this;
+    }
+
     public DialogSheet setColoredNavigationBar(boolean coloredNavigationBar) {
         this.coloredNavigationBar = coloredNavigationBar;
         return this;
@@ -376,21 +378,11 @@ public class DialogSheet {
         int posButtonTextColor = Color.WHITE;
 
         if (accentColor != -1) {
-            bottomSheetDialog = new BottomSheetDialog(context, R.style.DialogSheetTheme);
+            bottomSheetDialog = new ExpandedBottomSheetDialog(context, R.style.DialogSheetTheme);
             posButtonTextColor = Utils.getTextColor(accentColor);
-        } else bottomSheetDialog = new BottomSheetDialog(context);
+        } else bottomSheetDialog = new ExpandedBottomSheetDialog(context);
 
         bottomSheetDialog.setContentView(R.layout.layout_bottomdialog);
-
-        bottomSheetDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialog) {
-                BottomSheetDialog d = (BottomSheetDialog) dialog;
-                FrameLayout bottomSheet = (FrameLayout) d.findViewById(android.support.design.R.id.design_bottom_sheet);
-                BottomSheetBehavior.from(bottomSheet)
-                        .setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
-        });
 
         titleTextView = bottomSheetDialog.findViewById(R.id.dialogTitle);
         messageTextView = bottomSheetDialog.findViewById(R.id.dialogMessage);

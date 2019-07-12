@@ -166,7 +166,8 @@ public class DialogSheet {
                 public void onClick(View view) {
                     if (shouldDismiss)
                         bottomSheetDialog.dismiss();
-                    if (onPositiveClickListener!=null)
+
+                    if (onPositiveClickListener != null)
                         onPositiveClickListener.onClick(view);
                 }
             });
@@ -180,17 +181,17 @@ public class DialogSheet {
         return this;
     }
 
-    public DialogSheet setPositiveButton(@StringRes int textRes, OnPositiveClickListener onPositiveClickListener) {
-        setPositiveButton(context.getResources().getString(textRes), true, onPositiveClickListener);
-        return this;
-    }
-
     public DialogSheet setPositiveButton(@StringRes int textRes, boolean shouldDismiss, OnPositiveClickListener onPositiveClickListener) {
         setPositiveButton(context.getResources().getString(textRes), shouldDismiss, onPositiveClickListener);
         return this;
     }
 
-    public DialogSheet setNegativeButton(CharSequence text, final boolean shoudDismiss, final OnNegativeClickListener onNegativeClickListener) {
+    public DialogSheet setPositiveButton(@StringRes int textRes, OnPositiveClickListener onPositiveClickListener) {
+        setPositiveButton(context.getResources().getString(textRes), true, onPositiveClickListener);
+        return this;
+    }
+
+    public DialogSheet setNegativeButton(CharSequence text, final boolean shouldDismiss, final OnNegativeClickListener onNegativeClickListener) {
         if (text == null)
             negativeButton.setVisibility(View.GONE);
         else {
@@ -199,9 +200,10 @@ public class DialogSheet {
             negativeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (shoudDismiss)
+                    if (shouldDismiss)
                         bottomSheetDialog.dismiss();
-                    if (onNegativeClickListener!=null)
+
+                    if (onNegativeClickListener != null)
                         onNegativeClickListener.onClick(view);
                 }
             });
@@ -215,13 +217,13 @@ public class DialogSheet {
         return this;
     }
 
-    public DialogSheet setNegativeButton(@StringRes int textRes, OnNegativeClickListener onNegativeClickListener) {
-        setNegativeButton(context.getResources().getString(textRes), true, onNegativeClickListener);
+    public DialogSheet setNegativeButton(@StringRes int textRes, boolean shouldDismiss, OnNegativeClickListener onNegativeClickListener) {
+        setNegativeButton(context.getResources().getString(textRes), shouldDismiss, onNegativeClickListener);
         return this;
     }
 
-    public DialogSheet setNegativeButton(@StringRes int textRes, boolean shoudDismiss, OnNegativeClickListener onNegativeClickListener) {
-        setNegativeButton(context.getResources().getString(textRes), shoudDismiss, onNegativeClickListener);
+    public DialogSheet setNegativeButton(@StringRes int textRes, OnNegativeClickListener onNegativeClickListener) {
+        setNegativeButton(context.getResources().getString(textRes), true, onNegativeClickListener);
         return this;
     }
 

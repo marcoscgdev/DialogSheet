@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Positive button clicked!", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setNegativeButton(android.R.string.cancel, null);
+                .setNegativeButton(android.R.string.cancel, null)
+                .setNeutralButton("Neutral", null);
 
 
         if (((AppCompatCheckBox)findViewById(R.id.customViewCheckBox)).isChecked()) {

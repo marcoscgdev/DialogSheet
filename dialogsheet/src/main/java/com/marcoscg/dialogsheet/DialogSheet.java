@@ -405,6 +405,9 @@ public class DialogSheet {
 
         setColoredNavBar(coloredNavigationBar);
 
+        if (positiveButton.getVisibility() != View.VISIBLE)
+            ((RelativeLayout.LayoutParams)negativeButton.getLayoutParams()).addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+
         if (!areButtonsVisible()) {
             int bottomPadding = 0;
             int topPadding = 0;

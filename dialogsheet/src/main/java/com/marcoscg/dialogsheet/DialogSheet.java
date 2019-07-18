@@ -39,7 +39,7 @@ public class DialogSheet {
 
     private AppCompatTextView titleTextView, messageTextView;
     private AppCompatImageView iconImageView;
-    private AppCompatButton positiveButton, negativeButton;
+    private AppCompatButton positiveButton, negativeButton, neutralButton;
     private RelativeLayout textContainer;
     private LinearLayout messageContainer;
 
@@ -50,6 +50,10 @@ public class DialogSheet {
     }
 
     public interface OnNegativeClickListener {
+        public void onClick(View v);
+    }
+
+    public interface OnNeutralClickListener {
         public void onClick(View v);
     }
 
@@ -227,9 +231,46 @@ public class DialogSheet {
         return this;
     }
 
+    public DialogSheet setNeutralButton(CharSequence text, final boolean shouldDismiss, final OnNeutralClickListener onNegativeClickListener) {
+        if (text == null)
+            neutralButton.setVisibility(View.GONE);
+        else {
+            neutralButton.setVisibility(View.VISIBLE);
+            neutralButton.setText(text);
+            neutralButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (shouldDismiss)
+                        bottomSheetDialog.dismiss();
+
+                    if (onNegativeClickListener != null)
+                        onNegativeClickListener.onClick(view);
+                }
+            });
+        }
+
+        return this;
+    }
+
+    public DialogSheet setNeutralButton(CharSequence text, final OnNeutralClickListener onNegativeClickListener) {
+        setNeutralButton(text, true, onNegativeClickListener);
+        return this;
+    }
+
+    public DialogSheet setNeutralButton(@StringRes int textRes, boolean shouldDismiss, OnNeutralClickListener onNegativeClickListener) {
+        setNeutralButton(context.getResources().getString(textRes), shouldDismiss, onNegativeClickListener);
+        return this;
+    }
+
+    public DialogSheet setNeutralButton(@StringRes int textRes, OnNeutralClickListener onNegativeClickListener) {
+        setNeutralButton(context.getResources().getString(textRes), true, onNegativeClickListener);
+        return this;
+    }
+
     public DialogSheet setButtonsTextAllCaps(boolean textAllCaps) {
         positiveButton.setAllCaps(textAllCaps);
         negativeButton.setAllCaps(textAllCaps);
+        neutralButton.setAllCaps(textAllCaps);
 
         return this;
     }
@@ -413,6 +454,7 @@ public class DialogSheet {
         iconImageView = bottomSheetDialog.findViewById(R.id.dialogIcon);
         positiveButton = bottomSheetDialog.findViewById(R.id.buttonPositive);
         negativeButton = bottomSheetDialog.findViewById(R.id.buttonNegative);
+        neutralButton = bottomSheetDialog.findViewById(R.id.buttonNeutral);
         textContainer = bottomSheetDialog.findViewById(R.id.textContainer);
         messageContainer = bottomSheetDialog.findViewById(R.id.messageContainer);
 
@@ -449,7 +491,8 @@ public class DialogSheet {
     }
 
     private boolean areButtonsVisible() {
-        return positiveButton.getVisibility() == View.VISIBLE || negativeButton.getVisibility() == View.VISIBLE;
+        return positiveButton.getVisibility() == View.VISIBLE || negativeButton.getVisibility() == View.VISIBLE
+                || neutralButton.getVisibility() == View.VISIBLE;
     }
 
     private void removePreviousMessageViews() {

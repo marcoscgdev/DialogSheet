@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.0.6.
+#### Current release: 2.0.7.
 
  - Now with AndroidX support.
 
@@ -18,7 +18,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.4/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.7/app-debug.apk).
 
 ---
 
@@ -40,7 +40,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.0.6'
+implementation 'com.github.marcoscgdev:DialogSheet:2.0.7'
 ```
 
 ### Creating the dialog with Java
@@ -65,6 +65,7 @@ new DialogSheet(this)
             // Your action
         }
     })
+    .setNeutralButton("Neutral", null)
     .setBackgroundColor(Color.BLACK) // Your custom background color
     .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
     .show();
@@ -84,6 +85,9 @@ val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
         // Your action
     }
     .setNegativeButton(android.R.string.cancel) {
+        // Your action
+    }
+    .setNeutralButton("Neutral") {
         // Your action
     }
     .setRoundedCorners(false) // Default value is true

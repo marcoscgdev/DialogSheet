@@ -124,9 +124,9 @@ public class DialogSheet {
     }
 
     /**
-     * @deprecated use {@link #setIconDrawable(Drawable)} instead.
      * @param icon
      * @return
+     * @deprecated use {@link #setIconDrawable(Drawable)} instead.
      */
     @Deprecated
     public DialogSheet setIcon(Drawable icon) {
@@ -136,9 +136,9 @@ public class DialogSheet {
     }
 
     /**
-     * @deprecated use {@link #setIconBitmap(Bitmap)} instead.
      * @param icon
      * @return
+     * @deprecated use {@link #setIconBitmap(Bitmap)} instead.
      */
     @Deprecated
     public DialogSheet setIcon(Bitmap icon) {
@@ -148,9 +148,9 @@ public class DialogSheet {
     }
 
     /**
-     * @deprecated use {@link #setIconResource(int)} instead.
      * @param iconRes
      * @return
+     * @deprecated use {@link #setIconResource(int)} instead.
      */
     @Deprecated
     public DialogSheet setIcon(@DrawableRes int iconRes) {
@@ -383,9 +383,9 @@ public class DialogSheet {
     }
 
     public void show() {
-        if (backgroundColor==0)
+        if (backgroundColor == 0)
             backgroundColor = Utils.getAttrColor(context, android.R.attr.windowBackground);
-        if (backgroundColor!=0) {
+        if (backgroundColor != 0) {
             Drawable bgDrawable = null;
             View bgView = bottomSheetDialog.findViewById(R.id.mainDialogContainer);
             if (bgView != null)
@@ -395,9 +395,9 @@ public class DialogSheet {
                 bgDrawable.setColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN);
         }
 
-        if (titleTextColor==0)
+        if (titleTextColor == 0)
             titleTextColor = Utils.getTextColor(backgroundColor);
-        if (messageTextColor==0)
+        if (messageTextColor == 0)
             messageTextColor = Utils.getTextColorSec(backgroundColor);
 
         titleTextView.setTextColor(titleTextColor);
@@ -406,7 +406,7 @@ public class DialogSheet {
         setColoredNavBar(coloredNavigationBar);
 
         if (positiveButton.getVisibility() != View.VISIBLE)
-            ((RelativeLayout.LayoutParams)negativeButton.getLayoutParams()).addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            ((RelativeLayout.LayoutParams) negativeButton.getLayoutParams()).addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 
         if (!areButtonsVisible()) {
             int bottomPadding = 0;
@@ -419,11 +419,11 @@ public class DialogSheet {
                     topPadding = dpToPx(24);
             }
 
-            textContainer.setPadding(0,topPadding,0, bottomPadding);
+            textContainer.setPadding(0, topPadding, 0, bottomPadding);
         } else {
             if ((titleTextView.getText() == null || TextUtils.isEmpty(titleTextView.getText()))
                     && messageTextView.getText() != null && !TextUtils.isEmpty(messageTextView.getText()))
-                textContainer.setPadding(0,dpToPx(24),0, 0);
+                textContainer.setPadding(0, dpToPx(24), 0, 0);
         }
 
         bottomSheetDialog.show();
@@ -486,7 +486,7 @@ public class DialogSheet {
 
                 if (Build.VERSION.SDK_INT >= 26) {
                     int flags = bottomSheetDialog.getWindow().getDecorView().getSystemUiVisibility();
-                    flags  &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+                    flags &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
                     bottomSheetDialog.getWindow().getDecorView().setSystemUiVisibility(flags);
                 }
             }
@@ -499,7 +499,7 @@ public class DialogSheet {
     }
 
     private void removePreviousMessageViews() {
-        for (int i=1; i < messageContainer.getChildCount(); i++) {
+        for (int i = 1; i < messageContainer.getChildCount(); i++) {
             messageContainer.removeViewAt(i);
         }
     }

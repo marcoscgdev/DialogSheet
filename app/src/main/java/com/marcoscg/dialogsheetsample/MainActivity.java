@@ -23,15 +23,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 createAndShowDialog();
-
             }
         });
     }
 
     private void createAndShowDialog() {
-
         DialogSheet dialogSheet = new DialogSheet(MainActivity.this)
                 .setTitle(R.string.app_name)
                 .setMessage(R.string.lorem)
@@ -46,9 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton(android.R.string.cancel, null)
                 .setNeutralButton("Neutral", null);
 
-
-        if (((AppCompatCheckBox)findViewById(R.id.customViewCheckBox)).isChecked()) {
-
+        if (((AppCompatCheckBox) findViewById(R.id.customViewCheckBox)).isChecked()) {
             dialogSheet.setView(R.layout.custom_dialog_view);
 
             // Access dialog custom inflated view
@@ -62,14 +57,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        if (!((AppCompatCheckBox)findViewById(R.id.cornersCheckBox)).isChecked())
+        if (!((AppCompatCheckBox) findViewById(R.id.cornersCheckBox)).isChecked())
             dialogSheet.setRoundedCorners(false);
 
-        if (((AppCompatCheckBox)findViewById(R.id.iconCheckBox)).isChecked())
+        if (((AppCompatCheckBox) findViewById(R.id.iconCheckBox)).isChecked())
             dialogSheet.setIconResource(R.mipmap.ic_launcher);
 
         dialogSheet.show();
-
     }
 
     @Override
@@ -80,12 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_github:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/marcoscgdev/DialogSheet")));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_github) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/marcoscgdev/DialogSheet")));
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
 }

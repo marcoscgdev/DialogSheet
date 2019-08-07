@@ -20,6 +20,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -451,6 +452,9 @@ public class DialogSheet {
         } else bottomSheetDialog = new ExpandedBottomSheetDialog(context);
 
         bottomSheetDialog.setContentView(R.layout.layout_bottomdialog);
+
+        if (bottomSheetDialog.getWindow() != null)
+            bottomSheetDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         titleTextView = bottomSheetDialog.findViewById(R.id.dialogTitle);
         messageTextView = bottomSheetDialog.findViewById(R.id.dialogMessage);

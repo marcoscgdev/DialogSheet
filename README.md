@@ -5,8 +5,9 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.0.7.
+#### Current release: 2.0.8.
 
+ - Now with buttons coloring support (again) via code.
  - Now with AndroidX support.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
@@ -40,7 +41,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.0.7'
+implementation 'com.github.marcoscgdev:DialogSheet:2.0.8'
 ```
 
 ### Creating the dialog with Java
@@ -67,7 +68,7 @@ new DialogSheet(this)
     })
     .setNeutralButton("Neutral", null)
     .setBackgroundColor(Color.BLACK) // Your custom background color
-    .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
+    .setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
     .show();
 ```
 
@@ -92,13 +93,19 @@ val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
     }
     .setRoundedCorners(false) // Default value is true
     .setBackgroundColor(Color.BLACK) // Your custom background color
-    .setButtonsColorRes(R.color.colorPrimary)  // Default color is accent
+    .setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
     .show()
 ```
 
-### Colorize buttons (necessary)
+### Colorize buttons
 
-Add this atribute to your main app theme
+You can do it programmatically
+
+```java
+.setButtonsColorRes(R.color.colorPrimary)
+```
+
+Or by adding this atribute to your main app theme
 
 ```xml
 <item name="dialogSheetAccent">@color/colorAccent</item>

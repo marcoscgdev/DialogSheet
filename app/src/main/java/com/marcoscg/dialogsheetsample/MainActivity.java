@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage(R.string.lorem)
                 .setSingleLineTitle(true)
                 .setColoredNavigationBar(true)
+                //.setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
                 .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
                     @Override
                     public void onClick(View view) {

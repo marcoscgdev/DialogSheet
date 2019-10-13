@@ -1,7 +1,9 @@
 package com.marcoscg.dialogsheet;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -14,8 +16,8 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
+import android.support.design.button.MaterialButton;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import static com.marcoscg.dialogsheet.Utils.adjustAlpha;
 import static com.marcoscg.dialogsheet.Utils.dpToPx;
 import static com.marcoscg.dialogsheet.Utils.isColorLight;
 
@@ -40,7 +43,7 @@ public class DialogSheet {
 
     private AppCompatTextView titleTextView, messageTextView;
     private AppCompatImageView iconImageView;
-    private AppCompatButton positiveButton, negativeButton, neutralButton;
+    private MaterialButton positiveButton, negativeButton, neutralButton;
     private RelativeLayout textContainer;
     private LinearLayout messageContainer;
 
@@ -276,13 +279,34 @@ public class DialogSheet {
         return this;
     }
 
-    @Deprecated
+    @SuppressLint("RestrictedApi")
     public DialogSheet setButtonsColor(@ColorInt int buttonsColor) {
+        int rippleColor = adjustAlpha(buttonsColor, 0.2f);
+        ColorStateList secondaryButtonColor = new ColorStateList(
+                new int[][]{
+                                new int[]{android.R.attr.state_pressed},
+                                new int[]{android.R.attr.state_focused},
+                                new int[]{android.R.attr.state_activated},
+                                new int[]{}
+                        },
+                new int[]{
+                                rippleColor,
+                                rippleColor,
+                                rippleColor,
+                                Color.TRANSPARENT
+                        });
+
+        positiveButton.setSupportBackgroundTintList(ColorStateList.valueOf(buttonsColor));
+
+        negativeButton.setTextColor(buttonsColor);
+        negativeButton.setRippleColor(secondaryButtonColor);
+        neutralButton.setTextColor(buttonsColor);
+        neutralButton.setRippleColor(secondaryButtonColor);
         return this;
     }
 
-    @Deprecated
     public DialogSheet setButtonsColorRes(@ColorRes int buttonsColorRes) {
+        setButtonsColor(ContextCompat.getColor(context, buttonsColorRes));
         return this;
     }
 

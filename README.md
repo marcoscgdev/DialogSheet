@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.0.8.
+#### Current release: 2.0.9.
 
  - Now with buttons coloring support (again) via code.
  - Now with AndroidX support.
@@ -19,7 +19,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.7/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.9/app-debug.apk).
 
 ---
 
@@ -41,7 +41,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.0.8'
+implementation 'com.github.marcoscgdev:DialogSheet:2.0.9'
 ```
 
 ### Creating the dialog with Java
@@ -53,6 +53,7 @@ new DialogSheet(this)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
     .setColoredNavigationBar(true)
+    .setTitleTextSize(20) // In SP
     .setCancelable(false)
     .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
         @Override
@@ -81,6 +82,7 @@ val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
     .setColoredNavigationBar(true)
+    .setTitleTextSize(20) // In SP
     .setCancelable(false)
     .setPositiveButton(android.R.string.ok) {
         // Your action

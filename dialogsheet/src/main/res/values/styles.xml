@@ -1,11 +1,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="DialogSheetTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
-        <item name="colorPrimary">?dialogSheetAccent</item>
-        <item name="colorAccent">?dialogSheetAccent</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:colorBackground">@android:color/transparent</item>
         <item name="android:statusBarColor" tools:targetApi="21">@android:color/transparent</item>
+    </style>
+
+    <style name="DialogSheetTheme.Colored" parent="DialogSheetTheme">
+        <item name="colorPrimary">?dialogSheetAccent</item>
+        <item name="colorAccent">?dialogSheetAccent</item>
     </style>
 
 </resources>

@@ -21,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -363,8 +364,29 @@ public class DialogSheet {
     }
 
     public DialogSheet setButtonsTypeface(Typeface typeface) {
+        positiveButton.setTypeface(typeface);
         negativeButton.setTypeface(typeface);
-        negativeButton.setTypeface(typeface);
+        neutralButton.setTypeface(typeface);
+
+        return this;
+    }
+
+    public DialogSheet setTitleTextSize(int sizeSp) {
+        titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
+
+        return this;
+    }
+
+    public DialogSheet setMessageTextSize(int sizeSp) {
+        messageTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
+
+        return this;
+    }
+
+    public DialogSheet setButtonsTextSize(int sizeSp) {
+        positiveButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
+        negativeButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
+        neutralButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, sizeSp);
 
         return this;
     }
@@ -471,9 +493,9 @@ public class DialogSheet {
         int posButtonTextColor = Color.WHITE;
 
         if (accentColor != -1) {
-            bottomSheetDialog = new ExpandedBottomSheetDialog(context, R.style.DialogSheetTheme);
+            bottomSheetDialog = new ExpandedBottomSheetDialog(context, R.style.DialogSheetTheme_Colored);
             posButtonTextColor = Utils.getTextColor(accentColor);
-        } else bottomSheetDialog = new ExpandedBottomSheetDialog(context);
+        } else bottomSheetDialog = new ExpandedBottomSheetDialog(context, R.style.DialogSheetTheme);
 
         bottomSheetDialog.setContentView(R.layout.layout_bottomdialog);
 

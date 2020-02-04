@@ -55,7 +55,10 @@
                     android:id="@+id/messageContainer"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
+                    android:descendantFocusability="blocksDescendants">
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/dialogMessage"

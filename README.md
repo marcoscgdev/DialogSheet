@@ -5,10 +5,9 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.0.9.
+#### Current release: 2.1.0.
 
- - Now with buttons coloring support (again) via code.
- - Now with AndroidX support.
+ - This library is now based on Kotlin and AndroidX.
 
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
@@ -19,7 +18,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.0.9/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.1.0/app-debug.apk).
 
 ---
 
@@ -41,61 +40,46 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.0.9'
+implementation 'com.github.marcoscgdev:DialogSheet:2.1.0'
 ```
 
-### Creating the dialog with Java
+### Creating the dialog
 
 Here is a complete snippet of it usage:
 
 ```java
-new DialogSheet(this)
+val dialogSheet = DialogSheet(this)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
     .setColoredNavigationBar(true)
     .setTitleTextSize(20) // In SP
     .setCancelable(false)
-    .setPositiveButton(android.R.string.ok, new DialogSheet.OnPositiveClickListener() {
-        @Override
-        public void onClick(View v) {
+    .setPositiveButton(android.R.string.ok, object: DialogSheet.OnPositiveClickListener {
+        override fun onClick(v: View?) {
             // Your action
         }
     })
-    .setNegativeButton(android.R.string.cancel, new DialogSheet.OnNegativeClickListener() {
-        @Override
-        public void onClick(View v) {
+    .setNegativeButton(android.R.string.cancel, object: DialogSheet.OnPositiveClickListener {
+        override fun onClick(v: View?) {
             // Your action
         }
     })
     .setNeutralButton("Neutral", null)
-    .setBackgroundColor(Color.BLACK) // Your custom background color
-    .setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
-    .show();
-```
-
-### Creating the dialog with Kotlin
-
-Here is a complete snippet of it usage:
-
-```java
-val dialogSheet:DialogSheet = DialogSheet(this@MainActivity)
-    .setTitle(R.string.app_name)
-    .setMessage(R.string.lorem)
-    .setColoredNavigationBar(true)
-    .setTitleTextSize(20) // In SP
-    .setCancelable(false)
-    .setPositiveButton(android.R.string.ok) {
-        // Your action
-    }
-    .setNegativeButton(android.R.string.cancel) {
-        // Your action
-    }
-    .setNeutralButton("Neutral") {
-        // Your action
-    }
     .setRoundedCorners(false) // Default value is true
     .setBackgroundColor(Color.BLACK) // Your custom background color
     .setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
+    .setNeutralButtonColor(Color.WHITE)
+    .show()
+```
+
+### Creating the dialog using the new style
+
+Simply add a new boolean-type argument to the dialog constructor.
+
+```java
+val dialogSheet = DialogSheet(this, true)
+    ...
+    ...
     .show()
 ```
 
@@ -105,6 +89,12 @@ You can do it programmatically
 
 ```java
 .setButtonsColorRes(R.color.colorPrimary)
+```
+
+```java
+.setPositiveButtonColorRes(R.color.colorPrimary)
+.setNegativeButtonColorRes(R.color.colorNegative)
+.setNeutralButtonColorRes(R.color.colorNeutral)
 ```
 
 Or by adding this atribute to your main app theme

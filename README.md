@@ -15,7 +15,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 ---
 
 ## Screenshots
-<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_1.png" width="350"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_2.png" width="350"></kbd>
+<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_1.png" width="250"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_2.png" width="250"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_4.png" width="250"></kbd>
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_3.png" width="620"></kbd>
 

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="80dp">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/dialogIcon"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -29,7 +29,7 @@
             android:layout_toEndOf="@+id/dialogIcon"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dialogTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:layout_marginBottom="8dp"
                 android:visibility="gone"/>
 
-            <android.support.v4.widget.NestedScrollView
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrollMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                     android:focusable="true"
                     android:descendantFocusability="blocksDescendants">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/dialogMessage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
 
                 </LinearLayout>
 
-            </android.support.v4.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
 
         </LinearLayout>
 
@@ -87,7 +87,7 @@
         android:paddingRight="8dp"
         android:layout_gravity="bottom">
 
-        <android.support.design.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonNeutral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-        <android.support.design.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonNegative"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-        <android.support.design.button.MaterialButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonPositive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

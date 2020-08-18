@@ -4,11 +4,16 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:colorBackground">@android:color/transparent</item>
         <item name="android:statusBarColor" tools:targetApi="21">@android:color/transparent</item>
+        <item name="bottomSheetStyle">@style/DialogSheetBottomStyle</item>
     </style>
 
     <style name="DialogSheetTheme.Colored" parent="DialogSheetTheme">
         <item name="colorPrimary">?dialogSheetAccent</item>
         <item name="colorAccent">?dialogSheetAccent</item>
+    </style>
+
+    <style name="DialogSheetBottomStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

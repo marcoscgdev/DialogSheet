@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/iconCheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:checked="true"
             android:text="Icon"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cornersCheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:checked="true"
             android:text="Rounded"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/customViewCheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

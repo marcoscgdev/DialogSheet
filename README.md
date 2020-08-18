@@ -59,7 +59,7 @@ val dialogSheet = DialogSheet(this)
             // Your action
         }
     })
-    .setNegativeButton(android.R.string.cancel, object: DialogSheet.OnPositiveClickListener {
+    .setNegativeButton(android.R.string.cancel, object: DialogSheet.OnNegativeClickListener {
         override fun onClick(v: View?) {
             // Your action
         }

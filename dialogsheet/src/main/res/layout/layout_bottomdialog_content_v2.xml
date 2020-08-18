@@ -5,30 +5,31 @@
     android:id="@+id/mainDialogContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/dialog_sheet_main_background_round">
+    android:background="@drawable/dialog_sheet_main_background_round_margin">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/textContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:clipChildren="false"
         android:paddingBottom="80dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/iconCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="-8dp"
             android:visibility="gone"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="0dp"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="4dp"
             app:cardPreventCornerOverlap="false">
 
-            <androidx.appcompat.widget.AppCompatImageView
+            <com.marcoscg.dialogsheet.CircleImageView
                 android:id="@+id/dialogIcon"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:scaleType="centerCrop"/>
 
         </com.google.android.material.card.MaterialCardView>
@@ -36,8 +37,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/iconCardView"
-            android:layout_toEndOf="@+id/iconCardView"
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -49,9 +48,10 @@
                 android:layout_marginRight="24dp"
                 android:textColor="#000000"
                 android:ellipsize="end"
+                android:gravity="center_horizontal"
                 style="@style/TextAppearance.AppCompat.Title"
                 tools:text="Title"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:visibility="gone"/>
 
             <androidx.core.widget.NestedScrollView
@@ -88,7 +88,7 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/buttonContainer"

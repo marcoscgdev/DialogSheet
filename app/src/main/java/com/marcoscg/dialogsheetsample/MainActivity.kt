@@ -13,6 +13,7 @@ import com.marcoscg.dialogsheet.DialogSheet
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,7 +24,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createAndShowDialog() {
-        val dialogSheet = DialogSheet(this@MainActivity)
+        val useNewDialogStyle = newStyleCheckBox.isChecked
+
+        val dialogSheet = DialogSheet(this@MainActivity, useNewDialogStyle)
                 .setTitle(R.string.app_name)
                 .setMessage(R.string.lorem)
                 .setSingleLineTitle(true)
@@ -35,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                 })
                 .setNegativeButton(android.R.string.cancel, null)
                 .setNeutralButton("Neutral", null)
+                //.setNeutralButtonColor(Color.BLACK)
 
         if (customViewCheckBox.isChecked) {
             dialogSheet.setView(R.layout.custom_dialog_view)

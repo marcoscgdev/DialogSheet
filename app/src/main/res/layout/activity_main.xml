@@ -17,33 +17,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="3"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/iconCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Icon"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cornersCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Rounded"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/customViewCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="Custom view"/>
+
+        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/iconCheckBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:id="@+id/newStyleCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:checked="true"
-            android:text="Icon"/>
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/cornersCheckBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:text="Rounded"/>
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/customViewCheckBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:text="Custom view"/>
+            android:text="New dialog style"/>
 
     </LinearLayout>
 

@@ -7,7 +7,6 @@ import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -21,7 +20,11 @@ import androidx.annotation.*
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.card.MaterialCardView
 import com.marcoscg.dialogsheet.Utils.adjustAlpha
 import com.marcoscg.dialogsheet.Utils.dpToPx
 import com.marcoscg.dialogsheet.Utils.getAttrColor
@@ -33,9 +36,10 @@ import com.marcoscg.dialogsheet.Utils.orDefault
 /**
  * Created by @MarcosCGdev on 01/12/2017.
  */
-class DialogSheet(private val context: Context) {
+class DialogSheet(private val context: Context, private val useNewStyle: Boolean = false) {
 
     private var bottomSheetDialog: ExpandedBottomSheetDialog? = null
+    private var roundedCorners = true
     private var backgroundColor = 0
     private var titleTextColor = 0
     private var messageTextColor = 0
@@ -46,8 +50,9 @@ class DialogSheet(private val context: Context) {
     private var positiveButton: MaterialButton? = null
     private var negativeButton: MaterialButton? = null
     private var neutralButton: MaterialButton? = null
-    private var textContainer: RelativeLayout? = null
+    private var textContainer: View? = null
     private var messageContainer: LinearLayout? = null
+    private var iconCardView: MaterialCardView? = null
     var inflatedView: View? = null
         private set
 
@@ -238,21 +243,38 @@ class DialogSheet(private val context: Context) {
     }
 
     @SuppressLint("RestrictedApi")
-    fun setButtonsColor(@ColorInt buttonsColor: Int): DialogSheet {
-        val rippleColor = adjustAlpha(buttonsColor, 0.2f)
-        val secondaryButtonColor = ColorStateList(arrayOf(intArrayOf(android.R.attr.state_pressed),
-                intArrayOf(android.R.attr.state_focused), intArrayOf(android.R.attr.state_activated), intArrayOf()), intArrayOf(
-                rippleColor,
-                rippleColor,
-                rippleColor,
-                Color.TRANSPARENT
-        ))
+    fun setPositiveButtonColor(@ColorInt buttonColor: Int): DialogSheet {
+        positiveButton?.supportBackgroundTintList = ColorStateList.valueOf(buttonColor)
+        return this
+    }
 
-        positiveButton?.supportBackgroundTintList = ColorStateList.valueOf(buttonsColor)
-        negativeButton?.setTextColor(buttonsColor)
-        negativeButton?.rippleColor = secondaryButtonColor
-        neutralButton?.setTextColor(buttonsColor)
-        neutralButton?.rippleColor = secondaryButtonColor
+    fun setPositiveButtonColorRes(@ColorRes buttonColorRes: Int): DialogSheet {
+        setPositiveButtonColor(ContextCompat.getColor(context, buttonColorRes))
+        return this
+    }
+
+    fun setNegativeButtonColor(@ColorInt buttonColor: Int): DialogSheet {
+        setSecondaryButtonColor(negativeButton, buttonColor)
+        return this
+    }
+
+    fun setNegativeButtonColorRes(@ColorRes buttonColorRes: Int): DialogSheet {
+        setNegativeButtonColor(ContextCompat.getColor(context, buttonColorRes))
+        return this
+    }
+
+    fun setNeutralButtonColor(@ColorInt buttonColor: Int): DialogSheet {
+        setSecondaryButtonColor(neutralButton, buttonColor)
+        return this
+    }
+
+    fun setNeutralButtonColorRes(@ColorRes buttonColorRes: Int): DialogSheet {
+        setNeutralButtonColor(ContextCompat.getColor(context, buttonColorRes))
+        return this
+    }
+
+    fun setButtonsColor(@ColorInt buttonsColor: Int): DialogSheet {
+        setPositiveButtonColor(buttonsColor)
         return this
     }
 
@@ -341,10 +363,23 @@ class DialogSheet(private val context: Context) {
     }
 
     fun setRoundedCorners(roundedCorners: Boolean): DialogSheet {
-        if (!roundedCorners) {
+        if (roundedCorners) {
             val bgView = bottomSheetDialog?.findViewById<View>(R.id.mainDialogContainer)
-            bgView?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.dialog_sheet_main_background))
+            bgView?.setBackgroundResource(if (iconCardView?.visibility != View.GONE) {
+                if (useNewStyle) R.drawable.dialog_sheet_main_background_round_margin else R.drawable.dialog_sheet_main_background_round
+            } else {
+                R.drawable.dialog_sheet_main_background_round
+            })
+        } else {
+            val bgView = bottomSheetDialog?.findViewById<View>(R.id.mainDialogContainer)
+            bgView?.setBackgroundResource(if (iconCardView?.visibility != View.GONE) {
+                if (useNewStyle) R.drawable.dialog_sheet_main_background_margin else R.drawable.dialog_sheet_main_background
+            } else {
+                R.drawable.dialog_sheet_main_background
+            })
         }
+
+        this.roundedCorners = roundedCorners
 
         return this
     }
@@ -374,7 +409,13 @@ class DialogSheet(private val context: Context) {
             var bgDrawable: Drawable? = null
             val bgView = bottomSheetDialog?.findViewById<View>(R.id.mainDialogContainer)
             if (bgView != null) bgDrawable = bgView.background
-            bgDrawable?.setColorFilter(backgroundColor, PorterDuff.Mode.SRC_IN)
+
+            if (bgDrawable != null) {
+                val wrappedDrawable: Drawable = DrawableCompat.wrap(bgDrawable)
+                DrawableCompat.setTint(wrappedDrawable, backgroundColor)
+            }
+
+            iconCardView?.setCardBackgroundColor(if (useNewStyle) Color.WHITE else backgroundColor)
         }
 
         if (titleTextColor == 0) titleTextColor = getTextColor(backgroundColor)
@@ -401,6 +442,8 @@ class DialogSheet(private val context: Context) {
                     && messageTextView?.text != null && !TextUtils.isEmpty(messageTextView?.text)) textContainer?.setPadding(0, dpToPx(24), 0, 0)
         }
 
+        setRoundedCorners(roundedCorners)
+
         bottomSheetDialog?.show()
 
         // Landscape fixed width
@@ -424,7 +467,7 @@ class DialogSheet(private val context: Context) {
             posButtonTextColor = getTextColor(accentColor)
         } else bottomSheetDialog = ExpandedBottomSheetDialog(context, R.style.DialogSheetTheme)
 
-        bottomSheetDialog?.setContentView(R.layout.layout_bottomdialog)
+        bottomSheetDialog?.setContentView(if (useNewStyle) R.layout.layout_bottomdialog_v2 else R.layout.layout_bottomdialog)
 
         if (bottomSheetDialog?.window != null)
             bottomSheetDialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
@@ -437,16 +480,17 @@ class DialogSheet(private val context: Context) {
         neutralButton = bottomSheetDialog?.findViewById(R.id.buttonNeutral)
         textContainer = bottomSheetDialog?.findViewById(R.id.textContainer)
         messageContainer = bottomSheetDialog?.findViewById(R.id.messageContainer)
+        iconCardView = bottomSheetDialog?.findViewById(R.id.iconCardView)
 
         positiveButton?.setTextColor(posButtonTextColor)
     }
 
     private fun showIcon() {
-        iconImageView?.visibility = View.VISIBLE
+        iconCardView?.visibility = View.VISIBLE
     }
 
     private fun hideIcon() {
-        iconImageView?.visibility = View.GONE
+        iconCardView?.visibility = View.GONE
     }
 
     private fun setColoredNavBar(coloredNavigationBar: Boolean) {
@@ -473,6 +517,20 @@ class DialogSheet(private val context: Context) {
                 }
             }
         }
+    }
+
+    private fun setSecondaryButtonColor(button: MaterialButton?, @ColorInt buttonColor: Int) {
+        val rippleColor = adjustAlpha(buttonColor, 0.2f)
+        val secondaryButtonColor = ColorStateList(arrayOf(intArrayOf(android.R.attr.state_pressed),
+                intArrayOf(android.R.attr.state_focused), intArrayOf(android.R.attr.state_activated), intArrayOf()), intArrayOf(
+                rippleColor,
+                rippleColor,
+                rippleColor,
+                Color.TRANSPARENT
+        ))
+
+        button?.setTextColor(buttonColor)
+        button?.rippleColor = secondaryButtonColor
     }
 
     private fun areButtonsVisible(): Boolean {

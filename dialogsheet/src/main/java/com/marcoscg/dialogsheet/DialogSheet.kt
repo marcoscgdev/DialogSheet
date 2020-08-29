@@ -151,7 +151,7 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
         return this
     }
 
-    fun setPositiveButton(text: CharSequence?, shouldDismiss: Boolean, onPositiveClickListener: OnPositiveClickListener?): DialogSheet {
+    fun setPositiveButton(text: CharSequence?, shouldDismiss: Boolean, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
         if (text == null) positiveButton?.visibility = View.GONE else {
             positiveButton?.visibility = View.VISIBLE
             positiveButton?.text = text
@@ -164,22 +164,22 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
         return this
     }
 
-    fun setPositiveButton(text: CharSequence?, onPositiveClickListener: OnPositiveClickListener?): DialogSheet {
+    fun setPositiveButton(text: CharSequence?, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
         setPositiveButton(text, true, onPositiveClickListener)
         return this
     }
 
-    fun setPositiveButton(@StringRes textRes: Int, shouldDismiss: Boolean, onPositiveClickListener: OnPositiveClickListener?): DialogSheet {
+    fun setPositiveButton(@StringRes textRes: Int, shouldDismiss: Boolean, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
         setPositiveButton(context.resources.getString(textRes), shouldDismiss, onPositiveClickListener)
         return this
     }
 
-    fun setPositiveButton(@StringRes textRes: Int, onPositiveClickListener: OnPositiveClickListener?): DialogSheet {
+    fun setPositiveButton(@StringRes textRes: Int, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
         setPositiveButton(context.resources.getString(textRes), true, onPositiveClickListener)
         return this
     }
 
-    fun setNegativeButton(text: CharSequence?, shouldDismiss: Boolean, onNegativeClickListener: OnNegativeClickListener?): DialogSheet {
+    fun setNegativeButton(text: CharSequence?, shouldDismiss: Boolean, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
         if (text == null) negativeButton?.visibility = View.GONE else {
             negativeButton?.visibility = View.VISIBLE
             negativeButton?.text = text
@@ -192,22 +192,22 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
         return this
     }
 
-    fun setNegativeButton(text: CharSequence?, onNegativeClickListener: OnNegativeClickListener?): DialogSheet {
+    fun setNegativeButton(text: CharSequence?, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
         setNegativeButton(text, true, onNegativeClickListener)
         return this
     }
 
-    fun setNegativeButton(@StringRes textRes: Int, shouldDismiss: Boolean, onNegativeClickListener: OnNegativeClickListener?): DialogSheet {
+    fun setNegativeButton(@StringRes textRes: Int, shouldDismiss: Boolean, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
         setNegativeButton(context.resources.getString(textRes), shouldDismiss, onNegativeClickListener)
         return this
     }
 
-    fun setNegativeButton(@StringRes textRes: Int, onNegativeClickListener: OnNegativeClickListener?): DialogSheet {
+    fun setNegativeButton(@StringRes textRes: Int, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
         setNegativeButton(context.resources.getString(textRes), true, onNegativeClickListener)
         return this
     }
 
-    fun setNeutralButton(text: CharSequence?, shouldDismiss: Boolean, onNegativeClickListener: OnNeutralClickListener?): DialogSheet {
+    fun setNeutralButton(text: CharSequence?, shouldDismiss: Boolean, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
         if (text == null) neutralButton?.visibility = View.GONE else {
             neutralButton?.visibility = View.VISIBLE
             neutralButton?.text = text
@@ -220,17 +220,17 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
         return this
     }
 
-    fun setNeutralButton(text: CharSequence?, onNegativeClickListener: OnNeutralClickListener?): DialogSheet {
+    fun setNeutralButton(text: CharSequence?, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
         setNeutralButton(text, true, onNegativeClickListener)
         return this
     }
 
-    fun setNeutralButton(@StringRes textRes: Int, shouldDismiss: Boolean, onNegativeClickListener: OnNeutralClickListener?): DialogSheet {
+    fun setNeutralButton(@StringRes textRes: Int, shouldDismiss: Boolean, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
         setNeutralButton(context.resources.getString(textRes), shouldDismiss, onNegativeClickListener)
         return this
     }
 
-    fun setNeutralButton(@StringRes textRes: Int, onNegativeClickListener: OnNeutralClickListener?): DialogSheet {
+    fun setNeutralButton(@StringRes textRes: Int, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
         setNeutralButton(context.resources.getString(textRes), true, onNegativeClickListener)
         return this
     }

@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, "Positive button clicked!", Toast.LENGTH_SHORT).show()
                     }
                 })
-                .setNegativeButton(android.R.string.cancel, null)
-                .setNeutralButton("Neutral", null)
+                .setNegativeButton(android.R.string.cancel)
+                .setNeutralButton("Neutral")
                 //.setNeutralButtonColor(Color.BLACK)
 
         if (customViewCheckBox.isChecked) {

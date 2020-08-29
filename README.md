@@ -1,4 +1,4 @@
-# DialogSheet   [![](https://jitpack.io/v/marcoscgdev/DialogSheet.svg)](https://jitpack.io/#marcoscgdev/DialogSheet)
+# DialogSheet   [![](https://jitpack.io/v/marcoscgdev/DialogSheet.svg)](https://jitpack.io/#marcoscgdev/DialogSheet)  ![open-issues](https://badgen.net/github/open-issues/marcoscgdev/DialogSheet)  ![last commit](https://badgen.net/github/last-commit/marcoscgdev/DialogSheet)
 An Android library to create fully material designed bottom dialogs similar to the Android Pay app.
 
 ---

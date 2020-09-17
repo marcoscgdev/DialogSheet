@@ -56,15 +56,15 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
     var inflatedView: View? = null
         private set
 
-    interface OnPositiveClickListener {
+    fun interface OnPositiveClickListener {
         fun onClick(v: View?)
     }
 
-    interface OnNegativeClickListener {
+    fun interface OnNegativeClickListener {
         fun onClick(v: View?)
     }
 
-    interface OnNeutralClickListener {
+    fun interface OnNeutralClickListener {
         fun onClick(v: View?)
     }
 

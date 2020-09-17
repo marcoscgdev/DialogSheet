@@ -31,11 +31,9 @@ class MainActivity : AppCompatActivity() {
                 .setMessage(R.string.lorem)
                 .setSingleLineTitle(true)
                 .setColoredNavigationBar(true) //.setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
-                .setPositiveButton(android.R.string.ok, object: DialogSheet.OnPositiveClickListener {
-                    override fun onClick(v: View?) {
-                        Toast.makeText(this@MainActivity, "Positive button clicked!", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                .setPositiveButton(android.R.string.ok) {
+                    Toast.makeText(this@MainActivity, "Positive button clicked!", Toast.LENGTH_SHORT).show()
+                }
                 .setNegativeButton(android.R.string.cancel)
                 .setNeutralButton("Neutral")
                 //.setNeutralButtonColor(Color.BLACK)

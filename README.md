@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.1.0.
+#### Current release: 2.1.1.
 
  - This library is now based on Kotlin and AndroidX.
 
@@ -18,7 +18,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.1.0/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.1.1/app-debug.apk).
 
 ---
 
@@ -40,7 +40,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.1.0'
+implementation 'com.github.marcoscgdev:DialogSheet:2.1.1'
 ```
 
 ### Creating the dialog
@@ -54,17 +54,13 @@ val dialogSheet = DialogSheet(this)
     .setColoredNavigationBar(true)
     .setTitleTextSize(20) // In SP
     .setCancelable(false)
-    .setPositiveButton(android.R.string.ok, object: DialogSheet.OnPositiveClickListener {
-        override fun onClick(v: View?) {
-            // Your action
-        }
-    })
-    .setNegativeButton(android.R.string.cancel, object: DialogSheet.OnNegativeClickListener {
-        override fun onClick(v: View?) {
-            // Your action
-        }
-    })
-    .setNeutralButton("Neutral", null)
+    .setPositiveButton(android.R.string.ok) {
+        // Your action
+    }
+    .setNegativeButton(android.R.string.cancel) {
+        // Your action
+    }
+    .setNeutralButton("Neutral")
     .setRoundedCorners(false) // Default value is true
     .setBackgroundColor(Color.BLACK) // Your custom background color
     .setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead

@@ -473,7 +473,7 @@ class DialogSheet(private val context: Context, private var useNewStyle: Boolean
             posButtonTextColor = getTextColor(accentColor)
         } else bottomSheetDialog = ExpandedBottomSheetDialog(context, R.style.DialogSheetTheme)
 
-        bottomSheetDialog?.setContentView(if (useNewStyle) R.layout.layout_bottom_sheet_v2 else R.layout.layout_bottom_sheet)
+        bottomSheetDialog?.setContentView(if (useNewStyle) R.layout.layout_dialog_sheet_v2 else R.layout.layout_dialog_sheet)
 
         if (bottomSheetDialog?.window != null)
             bottomSheetDialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)

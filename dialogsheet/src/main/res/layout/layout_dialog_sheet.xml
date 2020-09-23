@@ -3,6 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <include layout="@layout/layout_bottom_sheet_content_v2"/>
+    <include layout="@layout/layout_dialog_sheet_content"/>
 
 </FrameLayout>

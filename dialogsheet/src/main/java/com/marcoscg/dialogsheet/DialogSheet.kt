@@ -30,6 +30,7 @@ import com.marcoscg.dialogsheet.Utils.dpToPx
 import com.marcoscg.dialogsheet.Utils.getAttrColor
 import com.marcoscg.dialogsheet.Utils.getTextColor
 import com.marcoscg.dialogsheet.Utils.getTextColorSec
+import com.marcoscg.dialogsheet.Utils.getWindowBackground
 import com.marcoscg.dialogsheet.Utils.isColorLight
 import com.marcoscg.dialogsheet.Utils.orDefault
 
@@ -404,7 +405,7 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
     }
 
     fun show() {
-        if (backgroundColor == 0) backgroundColor = getAttrColor(context, android.R.attr.windowBackground)
+        if (backgroundColor == 0) backgroundColor = getWindowBackground(context)
         if (backgroundColor != 0) {
             var bgDrawable: Drawable? = null
             val bgView = bottomSheetDialog?.findViewById<View>(R.id.mainDialogContainer)

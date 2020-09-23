@@ -7,10 +7,12 @@ import android.util.TypedValue
 import androidx.annotation.ColorInt
 import kotlin.math.roundToInt
 
+
 /**
  * Created by @MarcosCGdev on 01/12/2017.
  */
 internal object Utils {
+
     @JvmStatic
     fun isColorLight(@ColorInt color: Int): Boolean {
         if (color == Color.BLACK) return false else if (color == Color.WHITE || color == Color.TRANSPARENT) return true
@@ -48,6 +50,20 @@ internal object Utils {
         val color = a.getColor(0, -1)
         a.recycle()
         return color
+    }
+
+    @JvmStatic
+    @ColorInt
+    fun getWindowBackground(context: Context): Int {
+        val a = TypedValue()
+        context.theme.resolveAttribute(android.R.attr.windowBackground, a, true)
+        return if (a.type >= TypedValue.TYPE_FIRST_COLOR_INT && a.type <= TypedValue.TYPE_LAST_COLOR_INT) {
+            // windowBackground is a color
+            a.data
+        } else {
+            // windowBackground is not a color, probably a drawable
+            Color.WHITE
+        }
     }
 
     @JvmStatic

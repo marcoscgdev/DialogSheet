@@ -4,6 +4,6 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal">
 
-    <include layout="@layout/layout_bottomdialog_content"/>
+    <include layout="@layout/layout_bottom_sheet_content_v2"/>
 
 </FrameLayout>

@@ -20,8 +20,6 @@ import androidx.annotation.*
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.BlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -468,7 +466,7 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
             posButtonTextColor = getTextColor(accentColor)
         } else bottomSheetDialog = ExpandedBottomSheetDialog(context, R.style.DialogSheetTheme)
 
-        bottomSheetDialog?.setContentView(if (useNewStyle) R.layout.layout_bottomdialog_v2 else R.layout.layout_bottomdialog)
+        bottomSheetDialog?.setContentView(if (useNewStyle) R.layout.layout_bottom_sheet_v2 else R.layout.layout_bottom_sheet)
 
         if (bottomSheetDialog?.window != null)
             bottomSheetDialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)

@@ -27,10 +27,12 @@ class MainActivity : AppCompatActivity() {
         val useNewDialogStyle = newStyleCheckBox.isChecked
 
         val dialogSheet = DialogSheet(this@MainActivity, useNewDialogStyle)
+                //.setNewDialogStyle() // You can also set new style by this method, but put it on the first line
                 .setTitle(R.string.app_name)
                 .setMessage(R.string.lorem)
                 .setSingleLineTitle(true)
-                .setColoredNavigationBar(true) //.setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
+                .setColoredNavigationBar(true)
+                //.setButtonsColorRes(R.color.colorAccent) // You can use dialogSheetAccent style attribute instead
                 .setPositiveButton(android.R.string.ok) {
                     Toast.makeText(this@MainActivity, "Positive button clicked!", Toast.LENGTH_SHORT).show()
                 }

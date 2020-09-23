@@ -35,7 +35,7 @@ import com.marcoscg.dialogsheet.Utils.orDefault
 /**
  * Created by @MarcosCGdev on 01/12/2017.
  */
-class DialogSheet(private val context: Context, private val useNewStyle: Boolean = false) {
+class DialogSheet(private val context: Context, private var useNewStyle: Boolean = false) {
 
     private var bottomSheetDialog: ExpandedBottomSheetDialog? = null
     private var roundedCorners = true
@@ -65,6 +65,13 @@ class DialogSheet(private val context: Context, private val useNewStyle: Boolean
 
     fun interface OnNeutralClickListener {
         fun onClick(v: View?)
+    }
+
+    fun setNewDialogStyle(): DialogSheet {
+        this.useNewStyle = true
+        init(context)
+
+        return this
     }
 
     fun setTitle(title: CharSequence?): DialogSheet {

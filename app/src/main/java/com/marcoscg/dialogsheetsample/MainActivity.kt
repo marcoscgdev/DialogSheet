@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private fun createAndShowDialog() {
         val useNewDialogStyle = newStyleCheckBox.isChecked
 
-        val dialogSheet = DialogSheet(this@MainActivity, useNewDialogStyle)
+        val dialogSheet = DialogSheet(this@MainActivity, useNewDialogStyle) // you can also use DialogSheet2 if you want the new style
                 //.setNewDialogStyle() // You can also set new style by this method, but put it on the first line
                 .setTitle(R.string.app_name)
                 .setMessage(R.string.lorem)

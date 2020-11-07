@@ -35,7 +35,7 @@ import com.marcoscg.dialogsheet.Utils.orDefault
 /**
  * Created by @MarcosCGdev on 01/12/2017.
  */
-class DialogSheet(private val context: Context, private var useNewStyle: Boolean = false) {
+open class DialogSheet(private val context: Context, private var useNewStyle: Boolean = false) {
 
     private var bottomSheetDialog: ExpandedBottomSheetDialog? = null
     private var roundedCorners = true

@@ -2,5 +2,7 @@
 <resources>
     <dimen name="dialog_sheet_corner_radius">16dp</dimen>
     <dimen name="dialog_sheet_icon_size">56dp</dimen>
-    <dimen name="dialog_sheet_v2_icon_size">64dp</dimen>
+    <dimen name="dialog_sheet_v2_icon_size">60dp</dimen>
+    <dimen name="dialog_sheet_test_dimen">16dp</dimen>
+    <dimen name="dialog_sheet_button_text_size">15sp</dimen>
 </resources>

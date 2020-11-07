@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Attrs -->
+    <public type="attr" name="dialogSheetAccent" />
+
+    <!-- Dimens -->
+    <public type="dimen" name="dialog_sheet_corner_radius" />
+    <public type="dimen" name="dialog_sheet_icon_size" />
+    <public type="dimen" name="dialog_sheet_v2_icon_size" />
+</resources>

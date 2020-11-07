@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.1.1.
+#### Current release: 2.1.2.
 
  - This library is now based on Kotlin and AndroidX.
 
@@ -40,7 +40,7 @@ allprojects {
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.1.1'
+implementation 'com.github.marcoscgdev:DialogSheet:2.1.2'
 ```
 
 ### Creating the dialog
@@ -70,10 +70,19 @@ val dialogSheet = DialogSheet(this)
 
 ### Creating the dialog using the new style
 
-Simply add a new boolean-type argument to the dialog constructor.
+Simply use the new _DialogSheet2_ class:
 
 ```java
-val dialogSheet = DialogSheet(this, true)
+val dialogSheet = DialogSheet2(this)
+    ...
+    ...
+    .show()
+```
+
+Or add a new boolean-type argument to the dialog constructor:
+
+```java
+val dialogSheet = DialogSheet2(this, true)
     ...
     ...
     .show()
@@ -126,6 +135,17 @@ View inflatedView = dialogSheet.getInflatedView();
 Button button = (Button) inflatedView.findViewById(R.id.customButton);
 ...
  ```
+
+### Custom resources:
+
+Override it if you want :P
+
+```xml
+<dimen name="dialog_sheet_corner_radius">16dp</dimen>
+<dimen name="dialog_sheet_icon_size">56dp</dimen>
+<dimen name="dialog_sheet_v2_icon_size">60dp</dimen>
+<dimen name="dialog_sheet_button_text_size">15sp</dimen>
+```
 
 ---
 >See the *sample project* to clarify any queries you may have.

@@ -28,7 +28,7 @@ Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releas
 
 Add this to your root *build.gradle* file:
 
-```
+```groovy
 allprojects {
     repositories {
         ...
@@ -39,7 +39,7 @@ allprojects {
 
 Now add the dependency to your app build.gradle file:
 
-```
+```groovy
 implementation 'com.github.marcoscgdev:DialogSheet:2.1.2'
 ```
 
@@ -47,7 +47,7 @@ implementation 'com.github.marcoscgdev:DialogSheet:2.1.2'
 
 Here is a complete snippet of it usage:
 
-```java
+```kotlin
 val dialogSheet = DialogSheet(this)
     .setTitle(R.string.app_name)
     .setMessage(R.string.lorem)
@@ -72,7 +72,7 @@ val dialogSheet = DialogSheet(this)
 
 Simply use the new _DialogSheet2_ class:
 
-```java
+```kotlin
 val dialogSheet = DialogSheet2(this)
     ...
     ...
@@ -81,7 +81,7 @@ val dialogSheet = DialogSheet2(this)
 
 Or add a new boolean-type argument to the dialog constructor:
 
-```java
+```kotlin
 val dialogSheet = DialogSheet2(this, true)
     ...
     ...
@@ -92,11 +92,11 @@ val dialogSheet = DialogSheet2(this, true)
 
 You can do it programmatically
 
-```java
+```kotlin
 .setButtonsColorRes(R.color.colorPrimary)
 ```
 
-```java
+```kotlin
 .setPositiveButtonColorRes(R.color.colorPrimary)
 .setNegativeButtonColorRes(R.color.colorNegative)
 .setNeutralButtonColorRes(R.color.colorNeutral)
@@ -120,19 +120,19 @@ Simply override this dimen with your desired size
  
   - Via inflated view:
   
-  ```java
-  View view = View.inflate(context, R.layout.custom_dialog_view, null);
-  dialogSheet.setView(view);
+  ```kotlin
+  val view = View.inflate(context, R.layout.custom_dialog_view, null)
+  dialogSheet.setView(view)
   ```
   
   - Via layout resource:
  
- ```java
- dialogSheet.setView(R.layout.custom_dialog_view);
+ ```kotlin
+ dialogSheet.setView(R.layout.custom_dialog_view)
  
  // Access dialog custom inflated view
-View inflatedView = dialogSheet.getInflatedView();
-Button button = (Button) inflatedView.findViewById(R.id.customButton);
+val inflatedView = dialogSheet.getInflatedView()
+val button = inflatedView.findViewById(R.id.customButton)
 ...
  ```
 

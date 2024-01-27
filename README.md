@@ -5,7 +5,7 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 ## Releases:
 
-#### Current release: 2.1.2.
+#### Current release: 2.2.0.
 
  - This library is now based on Kotlin and AndroidX.
 
@@ -37,10 +37,30 @@ allprojects {
 }
 ```
 
+Or if you are using KTS, add this into your *settings.gradle.kts* file:
+
+```
+dependencyResolutionManagement {
+    ...
+    repositories {
+        ...
+        maven {
+           setUrl("https://jitpack.io")
+        }
+    }
+}
+```
+
 Now add the dependency to your app build.gradle file:
 
 ```
-implementation 'com.github.marcoscgdev:DialogSheet:2.1.2'
+implementation 'com.github.marcoscgdev:DialogSheet:2.2.0'
+```
+
+Or if you are using KTS:
+
+```
+implementation("com.github.marcoscgdev:DialogSheet:2.2.0")
 ```
 
 ### Creating the dialog
@@ -145,6 +165,7 @@ Override it if you want :P
 <dimen name="dialog_sheet_icon_size">56dp</dimen>
 <dimen name="dialog_sheet_v2_icon_size">60dp</dimen>
 <dimen name="dialog_sheet_button_text_size">15sp</dimen>
+<dimen name="dialog_sheet_landscape_width">400dp</dimen>
 ```
 
 ---

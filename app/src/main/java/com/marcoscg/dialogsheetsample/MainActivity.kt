@@ -5,26 +5,28 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.marcoscg.dialogsheet.DialogSheet
-import kotlinx.android.synthetic.main.activity_main.*
+import com.marcoscg.dialogsheetsample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
-        button.setOnClickListener {
+        binding.button.setOnClickListener {
             createAndShowDialog()
         }
     }
 
     private fun createAndShowDialog() {
-        val useNewDialogStyle = newStyleCheckBox.isChecked
+        val useNewDialogStyle = binding.newStyleCheckBox.isChecked
 
         val dialogSheet = DialogSheet(this@MainActivity, useNewDialogStyle) // you can also use DialogSheet2 if you want the new style
                 //.setNewDialogStyle() // You can also set new style by this method, but put it on the first line
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 .setNeutralButton("Neutral")
                 //.setNeutralButtonColor(Color.BLACK)
 
-        if (customViewCheckBox.isChecked) {
+        if (binding.customViewCheckBox.isChecked) {
             dialogSheet.setView(R.layout.custom_dialog_view)
 
             // Access dialog custom inflated view
@@ -51,10 +53,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        if (!cornersCheckBox.isChecked)
+        if (!binding.cornersCheckBox.isChecked)
             dialogSheet.setRoundedCorners(false)
 
-        if (iconCheckBox.isChecked)
+        if (binding.iconCheckBox.isChecked)
             dialogSheet.setIconResource(R.mipmap.ic_launcher)
 
         dialogSheet.show()

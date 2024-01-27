@@ -157,7 +157,11 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
         return this
     }
 
-    fun setPositiveButton(text: CharSequence?, shouldDismiss: Boolean, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
+    fun setPositiveButton(
+        text: CharSequence?,
+        shouldDismiss: Boolean,
+        onPositiveClickListener: OnPositiveClickListener? = null
+    ): DialogSheet {
         if (text == null) positiveButton?.visibility = View.GONE else {
             positiveButton?.visibility = View.VISIBLE
             positiveButton?.text = text
@@ -170,22 +174,36 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
         return this
     }
 
-    fun setPositiveButton(text: CharSequence?, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
+    fun setPositiveButton(
+        text: CharSequence?, onPositiveClickListener: OnPositiveClickListener? = null
+    ): DialogSheet {
         setPositiveButton(text, true, onPositiveClickListener)
         return this
     }
 
-    fun setPositiveButton(@StringRes textRes: Int, shouldDismiss: Boolean, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
-        setPositiveButton(context.resources.getString(textRes), shouldDismiss, onPositiveClickListener)
+    fun setPositiveButton(
+        @StringRes textRes: Int,
+        shouldDismiss: Boolean,
+        onPositiveClickListener: OnPositiveClickListener? = null
+    ): DialogSheet {
+        setPositiveButton(
+            context.resources.getString(textRes), shouldDismiss, onPositiveClickListener
+        )
         return this
     }
 
-    fun setPositiveButton(@StringRes textRes: Int, onPositiveClickListener: OnPositiveClickListener? = null): DialogSheet {
+    fun setPositiveButton(
+        @StringRes textRes: Int, onPositiveClickListener: OnPositiveClickListener? = null
+    ): DialogSheet {
         setPositiveButton(context.resources.getString(textRes), true, onPositiveClickListener)
         return this
     }
 
-    fun setNegativeButton(text: CharSequence?, shouldDismiss: Boolean, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
+    fun setNegativeButton(
+        text: CharSequence?,
+        shouldDismiss: Boolean,
+        onNegativeClickListener: OnNegativeClickListener? = null
+    ): DialogSheet {
         if (text == null) negativeButton?.visibility = View.GONE else {
             negativeButton?.visibility = View.VISIBLE
             negativeButton?.text = text
@@ -198,22 +216,36 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
         return this
     }
 
-    fun setNegativeButton(text: CharSequence?, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
+    fun setNegativeButton(
+        text: CharSequence?, onNegativeClickListener: OnNegativeClickListener? = null
+    ): DialogSheet {
         setNegativeButton(text, true, onNegativeClickListener)
         return this
     }
 
-    fun setNegativeButton(@StringRes textRes: Int, shouldDismiss: Boolean, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
-        setNegativeButton(context.resources.getString(textRes), shouldDismiss, onNegativeClickListener)
+    fun setNegativeButton(
+        @StringRes textRes: Int,
+        shouldDismiss: Boolean,
+        onNegativeClickListener: OnNegativeClickListener? = null
+    ): DialogSheet {
+        setNegativeButton(
+            context.resources.getString(textRes), shouldDismiss, onNegativeClickListener
+        )
         return this
     }
 
-    fun setNegativeButton(@StringRes textRes: Int, onNegativeClickListener: OnNegativeClickListener? = null): DialogSheet {
+    fun setNegativeButton(
+        @StringRes textRes: Int, onNegativeClickListener: OnNegativeClickListener? = null
+    ): DialogSheet {
         setNegativeButton(context.resources.getString(textRes), true, onNegativeClickListener)
         return this
     }
 
-    fun setNeutralButton(text: CharSequence?, shouldDismiss: Boolean, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
+    fun setNeutralButton(
+        text: CharSequence?,
+        shouldDismiss: Boolean,
+        onNegativeClickListener: OnNeutralClickListener? = null
+    ): DialogSheet {
         if (text == null) neutralButton?.visibility = View.GONE else {
             neutralButton?.visibility = View.VISIBLE
             neutralButton?.text = text
@@ -226,17 +258,27 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
         return this
     }
 
-    fun setNeutralButton(text: CharSequence?, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
+    fun setNeutralButton(
+        text: CharSequence?, onNegativeClickListener: OnNeutralClickListener? = null
+    ): DialogSheet {
         setNeutralButton(text, true, onNegativeClickListener)
         return this
     }
 
-    fun setNeutralButton(@StringRes textRes: Int, shouldDismiss: Boolean, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
-        setNeutralButton(context.resources.getString(textRes), shouldDismiss, onNegativeClickListener)
+    fun setNeutralButton(
+        @StringRes textRes: Int,
+        shouldDismiss: Boolean,
+        onNegativeClickListener: OnNeutralClickListener? = null
+    ): DialogSheet {
+        setNeutralButton(
+            context.resources.getString(textRes), shouldDismiss, onNegativeClickListener
+        )
         return this
     }
 
-    fun setNeutralButton(@StringRes textRes: Int, onNegativeClickListener: OnNeutralClickListener? = null): DialogSheet {
+    fun setNeutralButton(
+        @StringRes textRes: Int, onNegativeClickListener: OnNeutralClickListener? = null
+    ): DialogSheet {
         setNeutralButton(context.resources.getString(textRes), true, onNegativeClickListener)
         return this
     }
@@ -371,18 +413,22 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
     fun setRoundedCorners(roundedCorners: Boolean): DialogSheet {
         if (roundedCorners) {
             val bgView = bottomSheetDialog?.findViewById<View>(R.id.mainDialogContainer)
-            bgView?.setBackgroundResource(if (iconCardView?.visibility != View.GONE) {
-                if (useNewStyle) R.drawable.dialog_sheet_main_background_round_margin else R.drawable.dialog_sheet_main_background_round
-            } else {
-                R.drawable.dialog_sheet_main_background_round
-            })
+            bgView?.setBackgroundResource(
+                if (iconCardView?.visibility != View.GONE) {
+                    if (useNewStyle) R.drawable.dialog_sheet_main_background_round_margin else R.drawable.dialog_sheet_main_background_round
+                } else {
+                    R.drawable.dialog_sheet_main_background_round
+                }
+            )
         } else {
             val bgView = bottomSheetDialog?.findViewById<View>(R.id.mainDialogContainer)
-            bgView?.setBackgroundResource(if (iconCardView?.visibility != View.GONE) {
-                if (useNewStyle) R.drawable.dialog_sheet_main_background_margin else R.drawable.dialog_sheet_main_background
-            } else {
-                R.drawable.dialog_sheet_main_background
-            })
+            bgView?.setBackgroundResource(
+                if (iconCardView?.visibility != View.GONE) {
+                    if (useNewStyle) R.drawable.dialog_sheet_main_background_margin else R.drawable.dialog_sheet_main_background
+                } else {
+                    R.drawable.dialog_sheet_main_background
+                }
+            )
         }
 
         this.roundedCorners = roundedCorners
@@ -431,21 +477,25 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
         messageTextView?.setTextColor(messageTextColor)
         setColoredNavBar(coloredNavigationBar)
 
-        if (positiveButton?.visibility != View.VISIBLE) (negativeButton?.layoutParams as RelativeLayout.LayoutParams)
-                .addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+        if (positiveButton?.visibility != View.VISIBLE) (negativeButton?.layoutParams as RelativeLayout.LayoutParams).addRule(
+            RelativeLayout.ALIGN_PARENT_RIGHT
+        )
 
         if (!areButtonsVisible()) {
             var bottomPadding = 0
             var topPadding = 0
             if (messageTextView?.text != null && !TextUtils.isEmpty(messageTextView?.text)) {
                 bottomPadding = dpToPx(24)
-                if (titleTextView?.text == null || TextUtils.isEmpty(titleTextView?.text)) topPadding = dpToPx(24)
+                if (titleTextView?.text == null || TextUtils.isEmpty(titleTextView?.text)) topPadding =
+                    dpToPx(24)
             }
 
             textContainer?.setPadding(0, topPadding, 0, bottomPadding)
         } else {
-            if ((titleTextView?.text == null || TextUtils.isEmpty(titleTextView?.text))
-                    && messageTextView?.text != null && !TextUtils.isEmpty(messageTextView?.text)) textContainer?.setPadding(0, dpToPx(24), 0, 0)
+            if ((titleTextView?.text == null || TextUtils.isEmpty(titleTextView?.text)) && messageTextView?.text != null && !TextUtils.isEmpty(
+                    messageTextView?.text
+                )
+            ) textContainer?.setPadding(0, dpToPx(24), 0, 0)
         }
 
         setRoundedCorners(roundedCorners)
@@ -454,9 +504,10 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
 
         // Landscape fixed width
         val configuration = context.resources.configuration
-        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE &&
-                configuration.screenWidthDp > 400) {
-            if (bottomSheetDialog?.window != null) bottomSheetDialog?.window?.setLayout(dpToPx(400), -1)
+        if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE && configuration.screenWidthDp > 400) {
+            if (bottomSheetDialog?.window != null) bottomSheetDialog?.window?.setLayout(
+                dpToPx(400), -1
+            )
         }
     }
 
@@ -475,8 +526,9 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
 
         bottomSheetDialog?.setContentView(if (useNewStyle) R.layout.layout_dialog_sheet_v2 else R.layout.layout_dialog_sheet)
 
-        if (bottomSheetDialog?.window != null)
-            bottomSheetDialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        if (bottomSheetDialog?.window != null) bottomSheetDialog?.window?.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+        )
 
         titleTextView = bottomSheetDialog?.findViewById(R.id.dialogTitle)
         messageTextView = bottomSheetDialog?.findViewById(R.id.dialogMessage)
@@ -527,13 +579,16 @@ open class DialogSheet(private val context: Context, private var useNewStyle: Bo
 
     private fun setSecondaryButtonColor(button: MaterialButton?, @ColorInt buttonColor: Int) {
         val rippleColor = adjustAlpha(buttonColor, 0.2f)
-        val secondaryButtonColor = ColorStateList(arrayOf(intArrayOf(android.R.attr.state_pressed),
-                intArrayOf(android.R.attr.state_focused), intArrayOf(android.R.attr.state_activated), intArrayOf()), intArrayOf(
-                rippleColor,
-                rippleColor,
-                rippleColor,
-                Color.TRANSPARENT
-        ))
+        val secondaryButtonColor = ColorStateList(
+            arrayOf(
+                intArrayOf(android.R.attr.state_pressed),
+                intArrayOf(android.R.attr.state_focused),
+                intArrayOf(android.R.attr.state_activated),
+                intArrayOf()
+            ), intArrayOf(
+                rippleColor, rippleColor, rippleColor, Color.TRANSPARENT
+            )
+        )
 
         button?.setTextColor(buttonColor)
         button?.rippleColor = secondaryButtonColor

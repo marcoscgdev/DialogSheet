@@ -7,8 +7,6 @@ An Android library to create fully material designed bottom dialogs similar to t
 
 #### Current release: 2.2.0.
 
- - This library is now based on Kotlin and AndroidX.
-
 You can see all the library releases [here](https://github.com/marcoscgdev/DialogSheet/releases).
 
 ---
@@ -18,7 +16,7 @@ You can see all the library releases [here](https://github.com/marcoscgdev/Dialo
 
 <kbd><img src="https://raw.githubusercontent.com/marcoscgdev/DialogSheet/master/screenshots/sc_3.png" width="620"></kbd>
 
-Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.1.1/app-debug.apk).
+Download the sample apk [here](https://github.com/marcoscgdev/DialogSheet/releases/download/2.2.0/app-debug.apk).
 
 ---
 
@@ -51,7 +49,7 @@ dependencyResolutionManagement {
 }
 ```
 
-Now add the dependency to your app build.gradle file:
+Now add the dependency to your app *build.gradle* file:
 
 ```
 implementation 'com.github.marcoscgdev:DialogSheet:2.2.0'
@@ -141,18 +139,18 @@ Simply override this dimen with your desired size
   - Via inflated view:
   
   ```java
-  View view = View.inflate(context, R.layout.custom_dialog_view, null);
-  dialogSheet.setView(view);
+val view = View.inflate(context, R.layout.custom_dialog_view, null)
+dialogSheet.setView(view)
   ```
   
   - Via layout resource:
  
  ```java
- dialogSheet.setView(R.layout.custom_dialog_view);
- 
- // Access dialog custom inflated view
-View inflatedView = dialogSheet.getInflatedView();
-Button button = (Button) inflatedView.findViewById(R.id.customButton);
+dialogSheet.setView(R.layout.custom_dialog_view)
+
+// Access dialog custom inflated view
+val inflatedView = dialogSheet.getInflatedView()
+val button = inflatedView.findViewById(R.id.customButton)
 ...
  ```
 
